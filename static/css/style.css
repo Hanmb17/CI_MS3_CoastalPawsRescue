@@ -1,0 +1,32 @@
+/* General Styles */
+:root {
+  --white: #ffffff;
+  --primary-blue: #12548e;
+}
+
+/* Navbar styling */
+nav {
+  background-color: var(--white);
+}
+
+nav ul a,
+nav a,
+header ul a,
+.dropdown-content li > a,
+.sidenav li > a {
+  color: var(--primary-blue);
+  font-family: "Montserrat", sans-serif;
+}
+
+nav ul a:hover {
+  background-color: #12548e48;
+}
+.margin-4 {
+    margin: -4px;
+}
+
+/* dropdown styling */
+.dropdown-content {
+  padding: 1rem;
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+}

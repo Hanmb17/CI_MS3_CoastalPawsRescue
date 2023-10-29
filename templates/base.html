@@ -11,6 +11,11 @@
       href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500&family=Montserrat:wght@600&display=swap"
       rel="stylesheet"
     />
+    <!-- Link to Font Awsome-->
+    <script
+      src="https://kit.fontawesome.com/c6d700b341.js"
+      crossorigin="anonymous"
+    ></script>
     <!-- Link to materialize -->
     <link
       rel="stylesheet"
@@ -26,8 +31,58 @@
     <title>Coastal Paws Rescue</title>
   </head>
   <body>
+    <header>
+      <!-- Dropdown Elements-->
+      <ul id="dropdown1" class="dropdown-content blue-font">
+        <li class=""><a href="#">Profile</a></li>
+        <li class=""><a href="#">Add / Edit Dog Listings</a></li>
+        <li class=""><a href="#">Adoption Requests</a></li>
+        <li class=""><a href="#">Adoption Status</a></li>
+        <li class=""><a href="#">Favourite Dogs</a></li>
+        <li class=""><a href="#">Adoption Form</a></li>
+      </ul>
+      <!-- Main Navbar -->
+      <nav class="z-depth-2">
+        <div class="nav-wrapper blue-font">
+          <a href="#" class="brand-logo left">Logo</a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger right"
+            ><i class="fa-solid fa-bars"></i
+          ></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Dogs For Adapotion</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li class="margin-4">
+              <a class="dropdown-trigger" href="#!" data-target="dropdown1"
+                ><i class="fa-solid fa-user"></i> Log In / Sign Up</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <ul class="sidenav blue-font" id="mobile-demo">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Dogs For Adapotion</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li class=""><a href="#">Log In / Sign Up</a></li>
+        <li class=""><a href="#">Profile</a></li>
+        <li class=""><a href="#">Add / Edit Dog Listings</a></li>
+        <li class=""><a href="#">Adoption Requests</a></li>
+        <li class=""><a href="#">Adoption Status</a></li>
+        <li class=""><a href="#">Favourite Dogs</a></li>
+        <li class=""><a href="#">Adoption Form</a></li>
+      </ul>
+    </header>
     {% block content %} {% endblock %}
-    <!-- Link to materialize -->
+    <!-- Link to Jquery -->
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <!-- Link to materialize JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     {% block scripts %} {% endblock %}
