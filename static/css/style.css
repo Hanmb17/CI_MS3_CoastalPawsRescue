@@ -1,91 +1,133 @@
-/* General Styles */
+/* Variables */
 :root {
-  --white: #ffffff;
-  --primary-blue: #12548e;
-}
+    --white: #ffffff;
+    --primary-blue: #12548e;
+    --primary-red: #FF5252;
+    --text-color: #0B3356;
+    --font-cursive: 'Caveat', cursive;
+    --font-sans: "Montserrat", sans-serif;
+    --dark-gray: #1F1F1F;
+    --light-gray: #12548e48;
+    --dark-shadow: rgba(0, 0, 0, 0.3);
+    --light-shadow: rgba(0, 0, 0, 0.14);
 
-/* Navbar styling */
-nav {
-  background-color: var(--white);
-}
+  }
+  
+  /* General Styles */
+  h1, h5 {
+    color: var(--primary-red);
+    font-family: var(--font-cursive);
+  }
+  
+  h5 {
+    font-size: xx-large;
+  }
+  
+  body {
+    font: normal 16px var(--font-sans);
+    color: var(--text-color);
+  }
+  
+  /* Buttons */
+  .btn-large,
+  .btn-large:hover {
+    color: var(--dark-gray);
+    background-color: var(--primary-red);
+    border-radius: 4px;
+    text-transform: none;
+  }
+  
+  /* Navbar */
+  nav {
+    background-color: var(--white);
+  }
+  
+  nav a,
+  header ul a,
+  .dropdown-content li > a,
+  .sidenav li > a {
+    color: var(--primary-blue);
+    font-family: var(--font-sans);
+  }
+  
+  nav ul a:hover {
+    background-color: var(--light-gray);
+  }
 
-nav ul a,
-nav a,
-header ul a,
-.dropdown-content li > a,
-.sidenav li > a {
-  color: var(--primary-blue);
-  font-family: "Montserrat", sans-serif;
-}
-
-nav ul a:hover {
-  background-color: #12548e48;
-}
-
-.margin-4 {
-    margin: -4px;
-}
-
-/* Dropdown styling */
-.dropdown-content {
-  padding: 1rem;
-  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
-}
-
-/* Footer styling */
-.page-footer {
+  .dropdown-content {
+    padding: 1rem;
+    box-shadow: 0 5px 5px 0 rgba(0,0,0,0.14), 0 7px 7px -1px rgba(0,0,0,0.12), 0 2px 4px -3px rgba(0,0,0,0.3);
+  }
+  
+  /* Footer */
+  .page-footer {
     background-color: var(--primary-blue);
-    font-family: "Montserrat", sans-serif;
-    padding-top:10px ;
-}
-
-.social-links-container {
+    font-family: var(--font-sans);
+    padding-top: 10px;
+  }
+  
+  /* Social Links */
+  .social-links-container {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-}
-
-.social-icons {
+  }
+  
+  .social-icons {
     display: flex;
-    align-items: flex-end;
-}
-
-.icon-item {
+    align-items: center; 
+  }
+  
+  .icon-item {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     padding-left: 10px;
-    font-size: 30px; 
-}
-
-.social-icons i:hover {
-    color: #bccfdf;
-}
-
-.footer-copyright {
+    font-size: 30px;
+  }
+  
+  .social-icons i:hover {
+    color: #bccfdf; 
+  }
+  
+  /* Home Page */
+  .hero-image {
+    /* Temp Picyure change */
+    background-image: url('https://www.toadhallcottages.co.uk/blog/wp-content/uploads/2018/03/dog-friendly-beaches.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 50vh;
+    position: relative;
+  }
+  
+  .features-section {
     display: flex;
-    align-items: center;
     justify-content: center;
-    height: 100%;
-}
+  }
 
-.footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  /* Margins */
+.margin-0 {
+    margin: 0 auto;
+  }
+  
+  .left-margin-0 {
+    margin-left: 0;
+  }
 
-}
-
-.footer-content p {
-    margin: 10px 0 0 0;
-}
-
-
-/* Media query for smaller screens */
-@media screen and (max-width: 600px) {
+  .margin-4 {
+    margin: -4px 0 -4px -4px;
+  }
+  
+  .side-padding {
+    padding: 0 15px;
+  }
+  
+  /* Media query */
+  @media screen and (max-width: 600px) {
     .footer-main .col {
       display: flex;
       flex-direction: column;
       align-items: center;
     }
   }
+  
