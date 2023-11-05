@@ -1,9 +1,61 @@
 {% extends "base.html" %} {% block content %}
-    <h1>Dogs For Adoption</h1>
-    {% for dogs in dogs %}
-        {{ dogs.name }}<br>
-        {{ dogs.breed }}<br>
-        {{ dogs.age }}<br>
+<h1 class="center">Dogs For Adoption</h1>
+<!-- HTML structure for the Materialize card -->
+<section class="container">
+  <div class="row">
+    {% for dog in dogs %}
+    <div class="col s12 m6 l4">
+      <div class="card">
+        <div class="card-image">
+          <img src="{{ dog.image_url }}" alt="{{ dog.name }} Image" />
+          <span class="card-banner">
+            {% if dog.status == "new" %} New {% elif dog.status == "rehomed" %}
+            Rehomed {% elif dog.status == "under_application" %} Under
+            Application {% endif %}
+          </span>
+        </div>
+        <div class="card-content">
+          <span class="card-title center">
+            <span class="dog-name">{{ dog.name }} </span>
+            <span class="gender-icon">
+              {% if dog.gender == "male" %}
+              <i class="fa-solid fa-mars" title="male"></i>
+              {% else %}
+              <i class="fa-solid fa-venus" title="Female"></i>
+              {% endif %}
+            </span>
+          </span>
+          <p><strong>Age:</strong> {{ dog.age }}</p>
+          <p><strong>Breed:</strong> {{ dog.breed }}</p>
+          <div class="icons-section">
+            <i
+              class="fas fa-dog"
+              title="{{ 'Can live with other dogs' if dog.can_live_with_other_dogs else 'Cannot live with other dogs' }}"
+            ></i>
+            <i
+              class="fas fa-cat icon"
+              title="{{ 'Can live with cats' if dog.can_live_with_cats else 'Cannot live with cats' }}"
+            ></i>
+            <i
+              class="fas fa-child icon"
+              title="{{ 'Can live with children' if dog.can_live_with_children else 'Cannot live with children' }}"
+            ></i>
+            <i
+              class="fas fa-user icon"
+              title="{{ 'Can be left alone' if dog.can_be_left_alone else 'Cannot be left alone' }}"
+            ></i>
+          </div>
+        </div>
+        <div class="card-action center">
+          <a href="#" class="waves-effect waves-primary btn-large cta-button"
+            >Meet {{ dog.name }}
+            <span class="icon"><i class="fas fa-paw"></i></span
+          ></a>
+        </div>
+      </div>
+    </div>
     {% endfor %}
+  </div>
+</section>
 
 {% endblock %}

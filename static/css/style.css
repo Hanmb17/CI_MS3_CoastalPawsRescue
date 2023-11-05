@@ -27,16 +27,30 @@
     font: normal 16px var(--font-sans);
     color: var(--text-color);
   }
+
+ 
   
   /* Buttons */
   .btn-large,
-  .btn-large:hover {
+  .btn-large:hover, 
+  .btn-large:focus {
     color: var(--dark-gray);
     background-color: var(--primary-red);
     border-radius: 4px;
     text-transform: none;
   }
   
+  .cta-button {
+    background-color: #FA8072;
+    color: #0B3356;
+    text-decoration: none;
+    font-family: var(--font-sans);
+    height: fit-content;
+    line-height: 1.2;
+    padding: 10px;
+  }
+
+
   /* Navbar */
   nav {
     background-color: var(--white);
@@ -103,6 +117,40 @@
   .features-section {
     display: flex;
     justify-content: center;
+  }
+
+/* Dogs Page */
+
+.card {
+    background-color: var(--primary-blue);
+    color: var(--white);
+  }
+  
+  .dog-name {
+    color: #FA8072;
+    font-family: var(--font-cursive);
+    font-size: 35px;
+  }
+  
+  .fa-mars {
+    color: #B0E0E6;
+  }
+  
+  .fa-venus {
+    color: #FFB6C1;
+  }
+  
+  .remove-uppercase {
+    text-transform: none;
+  }
+  
+  .icons-section {
+    margin-top: 10px;
+    font-size: 25px;
+  }
+  
+  .icon {
+    margin-left: 5px;
   }
 
   /* Margins */

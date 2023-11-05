@@ -26,9 +26,6 @@
       href="{{ url_for('static', filename='css/style.css')}}"
       type="text/css"
     />
-
-    {% block styles %} {% endblock %}
-    <title>Coastal Paws Rescue</title>
   </head>
   <body>
     <header>
@@ -50,7 +47,7 @@
           ></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="{{ url_for('home') }}">Home</a></li>
-            <li><a href="#">Dogs For Adapotion</a></li>
+            <li><a href="{{ url_for('get_dogs') }}">Dogs For Adapotion</a></li>
             <li><a href="#">Contact Us</a></li>
             <li class="margin-4">
               <a class="dropdown-trigger" href="#!" data-target="dropdown1">
