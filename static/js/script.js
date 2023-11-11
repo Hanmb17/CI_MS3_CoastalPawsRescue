@@ -9,6 +9,20 @@ $(document).ready(function () {
         coverTrigger: false
     });
 
+    $('#login-btn').click(function () {
+        $('#login-form').removeClass('hide');
+        $('#login-btn').addClass('active');
+        $('#signup-form').addClass('hide');
+        $('#signup-btn').removeClass('active');
+    });
+
+    $('#signup-btn').click(function () {
+        $('#login-form').addClass('hide');
+        $('#login-btn').removeClass('active');
+        $('#signup-form').removeClass('hide');
+        $('#signup-btn').addClass('active');
+    });
+
     /*
     jQuery for removal of class on window resize
     */

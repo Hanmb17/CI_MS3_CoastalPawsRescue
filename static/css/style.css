@@ -1,282 +1,298 @@
 /* Variables */
 :root {
-    --white: #ffffff;
-    --primary-blue: #12548e;
-    --primary-red: #FF5252;
-    --text-color: #0B3356;
-    --font-cursive: 'Caveat', cursive;
-    --font-sans: "Montserrat", sans-serif;
-    --dark-gray: #1F1F1F;
-    --light-gray: #12548e48;
-    --dark-shadow: rgba(0, 0, 0, 0.3);
-    --light-shadow: rgba(0, 0, 0, 0.14);
+  --white: #ffffff;
+  --primary-blue: #12548e;
+  --primary-red: #ff5252;
+  --text-color: #0b3356;
+  --font-cursive: "Caveat", cursive;
+  --font-sans: "Montserrat", sans-serif;
+  --dark-gray: #1f1f1f;
+  --light-gray: #12548e48;
+  --dark-shadow: rgba(0, 0, 0, 0.3);
+  --light-shadow: rgba(0, 0, 0, 0.14);
+}
 
-  }
-  
-  /* General Styles */
-  h1, h5 {
-    color: var(--primary-red);
-    font-family: var(--font-cursive);
-  }
-  
-  h5 {
-    font-size: xx-large;
-  }
-  
-  body {
-    font: normal 16px var(--font-sans);
-    color: var(--text-color);
-  }
+/* General Styles */
+h1,
+h5 {
+  color: var(--primary-red);
+  font-family: var(--font-cursive);
+}
 
- 
-  
-  /* Buttons */
-  .btn-large,
-  .btn-large:hover, 
-  .btn-large:focus {
-    color: var(--dark-gray);
-    background-color: var(--primary-red);
-    border-radius: 4px;
-    text-transform: none;
-  }
-  
-  .cta-button {
-    background-color: #FA8072;
-    color: #0B3356;
-    text-decoration: none;
-    font-family: var(--font-sans);
-    height: fit-content;
-    line-height: 1.2;
-    padding: 10px;
-  }
+h5 {
+  font-size: xx-large;
+}
 
+body,
+input {
+  font: normal 16px var(--font-sans);
+  color: var(--text-color);
+}
 
-  /* Navbar */
-  nav {
-    background-color: var(--white);
-  }
-  
-  nav a,
-  header ul a,
-  .dropdown-content li > a,
-  .sidenav li > a {
-    color: var(--primary-blue);
-    font-family: var(--font-sans);
-  }
-  
-  nav ul a:hover {
-    background-color: var(--light-gray);
-  }
+/* Buttons */
+.btn-large,
+.btn-large:hover,
+.btn-large:focus {
+  color: var(--dark-gray);
+  background-color: var(--primary-red);
+  border-radius: 4px;
+  text-transform: none;
+}
 
-  .dropdown-content {
-    padding: 1rem;
-    box-shadow: 0 5px 5px 0 rgba(0,0,0,0.14), 0 7px 7px -1px rgba(0,0,0,0.12), 0 2px 4px -3px rgba(0,0,0,0.3);
-  }
-  
-  /* Footer */
-  .page-footer {
-    background-color: var(--primary-blue);
-    font-family: var(--font-sans);
-    padding-top: 10px;
-  }
-  
-  /* Social Links */
-  .social-links-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-  
-  .social-icons {
-    display: flex;
-    align-items: center; 
-  }
-  
-  .icon-item {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding-left: 10px;
-    font-size: 30px;
-  }
-  
-  .social-icons i:hover {
-    color: #bccfdf; 
-  }
-  
-  /* Home Page */
-  .hero-image {
-    /* Temp Picyure change */
-    background-image: url('https://www.toadhallcottages.co.uk/blog/wp-content/uploads/2018/03/dog-friendly-beaches.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 50vh;
-    position: relative;
-  }
-  
-  .features-section {
-    display: flex;
-    justify-content: center;
-  }
+.cta-button {
+  background-color: #fa8072;
+  color: #0b3356;
+  text-decoration: none;
+  font-family: var(--font-sans);
+  height: fit-content;
+  line-height: 1.2;
+  padding: 10px;
+}
+
+/* Navbar */
+nav {
+  background-color: var(--white);
+}
+
+nav a,
+header ul a,
+.dropdown-content li > a,
+.sidenav li > a {
+  color: var(--primary-blue);
+  font-family: var(--font-sans);
+}
+
+nav ul a:hover {
+  background-color: var(--light-gray);
+}
+
+.dropdown-content {
+  padding: 1rem;
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.14),
+    0 7px 7px -1px rgba(0, 0, 0, 0.12), 0 2px 4px -3px rgba(0, 0, 0, 0.3);
+}
+
+/* Footer */
+.page-footer {
+  background-color: var(--primary-blue);
+  font-family: var(--font-sans);
+  padding-top: 10px;
+}
+
+/* Social Links */
+.social-links-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.social-icons {
+  display: flex;
+  align-items: center;
+}
+
+.icon-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 10px;
+  font-size: 30px;
+}
+
+.social-icons i:hover {
+  color: #bccfdf;
+}
+
+/* Home Page */
+.hero-image {
+  /* Temp Picyure change */
+  background-image: url("https://www.toadhallcottages.co.uk/blog/wp-content/uploads/2018/03/dog-friendly-beaches.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 50vh;
+  position: relative;
+}
+
+.features-section {
+  display: flex;
+  justify-content: center;
+}
 
 /* Dogs Page */
 
 /* Default styles for filter section */
 
 .filter-content {
-    padding: 10px 15px;
-    border: none;
+  padding: 10px 15px;
+  border: none;
 }
 
 .collapsible {
-    border: none;
-    box-shadow: none;
+  border: none;
+  box-shadow: none;
 }
 
 .collapsible-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    border: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
 }
 
 .column-content-wrapper {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
 }
 
 .top-align-label {
-    align-self: flex-start;
+  align-self: flex-start;
 }
 .top-align-label {
-    align-self: flex-start;
+  align-self: flex-start;
 }
 
 .middle-align-input {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
-.input-field input[type=text]:focus, input[type=text]:not(.browser-default):focus:not([readonly]) {
-    border-bottom: 1px solid var(--primary-red);
-    box-shadow: 0 1px 0 0 var(--primary-red); 
-  }
+.input-field input[type="text"]:focus,
+input[type="text"]:not(.browser-default):focus:not([readonly]),
+.input-field input[type="password"]:focus,
+input[type="password"]:not(.browser-default):focus:not([readonly]),
+.input-field input[type="email"]:focus,
+input[type="email"]:not(.browser-default):focus:not([readonly]) {
+  border-bottom: 1px solid var(--primary-red);
+  box-shadow: 0 1px 0 0 var(--primary-red);
+}
 
 .age-range {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
-.age-range-labels{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
+.age-range-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
 .age-slider {
-    margin: 0 10px 0 5px;
+  margin: 0 10px 0 5px;
 }
 
 label {
-    font-size: 1em;
-    color: var(--text-color);
+  font-size: 1em;
+  color: var(--text-color);
 }
 
 .noUi-connect {
-	background-color: var(--primary-red);
+  background-color: var(--primary-red);
 }
 
-.noUi-horizontal .noUi-handle, .noUi-vertical .noUi-handle {
-	background-color: var(--primary-red);
+.noUi-horizontal .noUi-handle,
+.noUi-vertical .noUi-handle {
+  background-color: var(--primary-red);
 }
 
 .noUi-target.noUi-horizontal .noUi-tooltip {
-	background-color: var(--primary-red);
+  background-color: var(--primary-red);
 }
 
-.switch label input[type=checkbox]:checked + .lever:after {
-    background-color: var(--primary-red)
+.switch label input[type="checkbox"]:checked + .lever:after {
+  background-color: var(--primary-red);
 }
 
-.switch label input[type=checkbox]:checked+.lever {
-    background-color: #fa8072;
+.switch label input[type="checkbox"]:checked + .lever {
+  background-color: #fa8072;
 }
 
 .card {
-    background-color: var(--primary-blue);
-    color: var(--white);
-  }
-  
-  .dog-name {
-    color: #FA8072;
-    font-family: var(--font-cursive);
-    font-size: 35px;
-  }
-  
-  .fa-mars {
-    color: #B0E0E6;
-  }
-  
-  .fa-venus {
-    color: #FFB6C1;
-  }
-  
-  .remove-uppercase {
-    text-transform: none;
-  }
-  
-  .icons-section {
-    margin-top: 10px;
-    font-size: 25px;
-  }
-  
-  .icon {
-    margin-left: 5px;
-  }
-
-  /* Margins */
-.margin-0 {
-    margin: 0 auto;
-  }
-  
-  .left-margin-0 {
-    margin-left: 0 !important;
-  }
-
-  .margin-4 {
-    margin: -4px 0 -4px -4px;
-  }
-  
-
-  .side-padding {
-    padding: 0 15px;
-  }
-  
-
-
-
-  
-  /* Media query */
-  @media screen and (max-width: 600px) {
-    .footer-main .col {
-      display: flex;
-      flex-direction: column;
-      align-items: center;}
- 
-    .column-content-wrapper {
-        text-align: center;
-        margin-bottom: 10px;
-    }
-  }
-
-  /* Media query for larger screens */
-@media screen and (min-width: 768px) {
-    .equal-height-row {
-        display: flex;
-    }
-    
-    .equal-height-row > .col {
-        display: flex;
-        flex-direction: column;
-    }
+  background-color: var(--primary-blue);
+  color: var(--white);
 }
-  
+
+.dog-name {
+  color: #fa8072;
+  font-family: var(--font-cursive);
+  font-size: 35px;
+}
+
+.fa-mars {
+  color: #b0e0e6;
+}
+
+.fa-venus {
+  color: #ffb6c1;
+}
+
+.remove-uppercase {
+  text-transform: none;
+}
+
+.icons-section {
+  margin-top: 10px;
+  font-size: 25px;
+}
+
+.icon {
+  margin-left: 5px;
+}
+
+/* Log In - Sign Up Page */
+
+.login-btn,
+.signup-btn {
+  padding: 0 5px;
+  font-size: 18px;
+  color: #bccfdf;
+}
+
+.login-btn.active,
+.signup-btn.active {
+  color: var(--white);
+  font-weight: bolder;
+  border-bottom: 2px solid var(--primary-red);
+}
+
+/* Margins */
+.margin-0 {
+  margin: 0 auto;
+}
+
+.left-margin-0 {
+  margin-left: 0 !important;
+}
+
+.margin-4 {
+  margin: -4px 0 -4px -4px;
+}
+
+.side-padding {
+  padding: 0 15px;
+}
+
+/* Media query */
+@media screen and (max-width: 600px) {
+  .footer-main .col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .column-content-wrapper {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+}
+
+/* Media query for larger screens */
+@media screen and (min-width: 768px) {
+  .equal-height-row {
+    display: flex;
+  }
+
+  .equal-height-row > .col {
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -51,7 +51,7 @@
             <li><a href="{{ url_for('get_dogs') }}">Dogs For Adapotion</a></li>
             <li><a href="#">Contact Us</a></li>
             <li class="margin-4">
-              <a class="dropdown-trigger" href="#!" data-target="dropdown1">
+              <a class="dropdown-trigger" href="{{ url_for('get_login_signup') }}" data-target="dropdown1">
                 <i class="fa-solid fa-user"></i> Log In / Sign Up</a
               >
             </li>
@@ -62,9 +62,9 @@
       <ul class="sidenav blue-font" id="mobile-demo">
         <li><a href="{{ url_for('home') }}">Home</a></li>
         <li><a href="#">About Us</a></li>
-        <li><a href="#">Dogs For Adapotion</a></li>
+        <li><a href="{{ url_for('get_dogs') }}">Dogs For Adapotion</a></li>
         <li><a href="#">Contact Us</a></li>
-        <li class=""><a href="#">Log In / Sign Up</a></li>
+        <li class=""><a href="{{ url_for('get_login_signup') }}">Log In / Sign Up</a></li>
         <li class=""><a href="#">Profile</a></li>
         <li class=""><a href="#">Add / Edit Dog Listings</a></li>
         <li class=""><a href="#">Adoption Requests</a></li>
