@@ -1,5 +1,86 @@
 {% extends "base.html" %} {% block content %}
 <h1 class="center">Dogs For Adoption</h1>
+<!--Filter section for searching the dogs table-->
+<div class="container">
+  <ul class="collapsible">
+    <li>
+      <div class="collapsible-header">
+        Filter Options
+        <button class="waves-effect waves-primary btn-large cta-button">
+          Apply
+        </button>
+      </div>
+      <div class="collapsible-body filter-content">
+        <div class="row margin-0 equal-height-row">
+          <div class="col m6 s12">
+            <label for="autocomplete-input">Search by breed or name</label>
+            <input
+              type="text"
+              id="autocomplete-input"
+              class="autocomplete input-field"
+            />
+          </div>
+          <div class="col m6 s12">
+            <div class="column-content-wrapper">
+              <label for="ageRange">Age Range:</label>
+              <div class="middle-align-input age-range">
+                <div class="age-range-labels">
+                  <span class="start-label">0</span>
+                  <span class="end-label">10+</span>
+                </div>
+                <div>
+                  <div class="age-slider" id="ageSlider"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row margin-0 equal-height-row">
+          <div class="col m4 s12 switch">
+            <div class="column-content-wrapper">
+              <label for="childFriendly">Can Live with Children:</label>
+              <div class="switch-toggle middle-align-input">
+                <label>
+                  Off
+                  <input type="checkbox" />
+                  <span class="lever"></span>
+                  On
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col m4 s12 switch">
+            <div class="column-content-wrapper">
+              <label for="catFriendly">Can Live with Cats:</label>
+              <div class="switch-toggle middle-align-input">
+                <label>
+                  Off
+                  <input type="checkbox" />
+                  <span class="lever"></span>
+                  On
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col m4 s12 switch">
+            <div class="column-content-wrapper">
+              <label for="dogFriendly">Can Live with Dogs:</label>
+              <div class="switch-toggle middle-align-input">
+                <label>
+                  Off
+                  <input type="checkbox" />
+                  <span class="lever"></span>
+                  On
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
 <!-- HTML structure for the Materialize card -->
 <section class="container">
   <div class="row">
@@ -58,4 +139,4 @@
   </div>
 </section>
 
-{% endblock %}
+{% endblock %} {% block scripts %} {% endblock %}

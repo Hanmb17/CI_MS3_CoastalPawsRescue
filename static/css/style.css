@@ -121,6 +121,86 @@
 
 /* Dogs Page */
 
+/* Default styles for filter section */
+
+.filter-content {
+    padding: 10px 15px;
+    border: none;
+}
+
+.collapsible {
+    border: none;
+    box-shadow: none;
+}
+
+.collapsible-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+}
+
+.column-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.top-align-label {
+    align-self: flex-start;
+}
+.top-align-label {
+    align-self: flex-start;
+}
+
+.middle-align-input {
+    margin-bottom: 15px;
+}
+.input-field input[type=text]:focus, input[type=text]:not(.browser-default):focus:not([readonly]) {
+    border-bottom: 1px solid var(--primary-red);
+    box-shadow: 0 1px 0 0 var(--primary-red); 
+  }
+
+.age-range {
+    margin-bottom: 20px;
+}
+.age-range-labels{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.age-slider {
+    margin: 0 10px 0 5px;
+}
+
+label {
+    font-size: 1em;
+    color: var(--text-color);
+}
+
+.noUi-connect {
+	background-color: var(--primary-red);
+}
+
+.noUi-horizontal .noUi-handle, .noUi-vertical .noUi-handle {
+	background-color: var(--primary-red);
+}
+
+.noUi-target.noUi-horizontal .noUi-tooltip {
+	background-color: var(--primary-red);
+}
+
+.switch label input[type=checkbox]:checked + .lever:after {
+    background-color: var(--primary-red)
+}
+
+.switch label input[type=checkbox]:checked+.lever {
+    background-color: #fa8072;
+}
+
 .card {
     background-color: var(--primary-blue);
     color: var(--white);
@@ -159,23 +239,44 @@
   }
   
   .left-margin-0 {
-    margin-left: 0;
+    margin-left: 0 !important;
   }
 
   .margin-4 {
     margin: -4px 0 -4px -4px;
   }
   
+
   .side-padding {
     padding: 0 15px;
   }
+  
+
+
+
   
   /* Media query */
   @media screen and (max-width: 600px) {
     .footer-main .col {
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: center;}
+ 
+    .column-content-wrapper {
+        text-align: center;
+        margin-bottom: 10px;
     }
   }
+
+  /* Media query for larger screens */
+@media screen and (min-width: 768px) {
+    .equal-height-row {
+        display: flex;
+    }
+    
+    .equal-height-row > .col {
+        display: flex;
+        flex-direction: column;
+    }
+}
   

@@ -37,4 +37,28 @@ $(document).ready(function () {
     $(window).resize(function () {
         handleClassOnResize(); 
     });
+
 });
+
+
+document.addEventListener("DOMContentLoaded", function(event) {
+    var slider = document.getElementById('ageSlider');
+    noUiSlider.create(slider, {
+     start: [0, 10],
+     connect: true,
+     step: 1,
+     range: {
+       'min': 0,
+       'max': 10
+     },
+     format: wNumb({
+       decimals: 0
+     })
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.collapsible');
+    var instances = M.Collapsible.init(elems);
+    console.log("Collapsed")
+  });
