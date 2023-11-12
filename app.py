@@ -24,6 +24,7 @@ def home():
     
 @app.route("/get_dogs")
 def get_dogs():
+    flash('Home Page Loaded')
     dogs = mongo.db.dogs.find()
     return render_template("dogs.html", dogs=dogs)
 
