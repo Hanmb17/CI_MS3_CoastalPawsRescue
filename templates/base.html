@@ -37,7 +37,7 @@
         <li class=""><a href="#">Adoption Requests</a></li>
         <li class=""><a href="#">Adoption Status</a></li>
         <li class=""><a href="#">Favourite Dogs</a></li>
-        <li class=""><a href="#">Adoption Form</a></li>
+        <li class=""><a href="{{ url_for('adoption_form') }}">Adoption Form</a></li>
       </ul>
       <!-- Main Navbar -->
       <nav class="z-depth-2 side-padding" id="nav">
@@ -70,7 +70,7 @@
         <li class=""><a href="#">Adoption Requests</a></li>
         <li class=""><a href="#">Adoption Status</a></li>
         <li class=""><a href="#">Favourite Dogs</a></li>
-        <li class=""><a href="#">Adoption Form</a></li>
+        <li class=""><a href="{{ url_for('adoption_form') }}">Adoption Form</a></li>
       </ul>
     </header>
     {% block content %} {% endblock %}

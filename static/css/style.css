@@ -162,7 +162,12 @@ input[type="text"]:not(.browser-default):focus:not([readonly]),
 .input-field input[type="password"]:focus,
 input[type="password"]:not(.browser-default):focus:not([readonly]),
 .input-field input[type="email"]:focus,
-input[type="email"]:not(.browser-default):focus:not([readonly]) {
+input[type="email"]:not(.browser-default):focus:not([readonly]),
+.input-field input[type="tel"]:focus,
+input[type="tel"]:not(.browser-default):focus:not([readonly]),
+.input-field input[type="number"]:focus,
+input[type="number"]:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
   border-bottom: 1px solid var(--primary-red);
   box-shadow: 0 1px 0 0 var(--primary-red);
 }
@@ -211,6 +216,7 @@ label {
   color: var(--white);
 }
 
+
 .dog-name {
   color: #fa8072;
   font-family: var(--font-cursive);
@@ -248,10 +254,58 @@ label {
 }
 
 .login-btn.active,
-.signup-btn.active {
+.signup-btn.active,
+.adoption_form .card-title span {
   color: var(--white);
   font-weight: bolder;
   border-bottom: 2px solid var(--primary-red);
+}
+
+
+.adoption_form {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.adoption_form .card-content .card-title {
+    font-family: var(--font-cursive);
+    font-size: 36px;
+    padding-bottom: 15px;
+    line-height: normal;
+}
+
+.card label,
+.card input,
+.card textarea,
+textarea.materialize-textarea:focus:not([readonly])+label,
+input[type=text]:not(.browser-default):focus:not([readonly])+label,
+input[type=password]:not(.browser-default):focus:not([readonly])+label,
+input[type=email]:not(.browser-default):focus:not([readonly])+label,
+input[type=tel]:not(.browser-default):focus:not([readonly])+label,
+input[type=number]:not(.browser-default):focus:not([readonly])+label {
+    color: var(--white);
+}
+
+.input-field > .radio-label {
+    position: relative;
+}
+
+[type="radio"]:checked + span:not(.lever):after {
+    background-color: var(--primary-red);
+    border: 2px solid var(--primary-red);
+}
+
+[type="radio"]:not(:checked)+span:before, [type="radio"]:not(:checked)+span:after {
+    border: 2px solid var(--white);
+}
+
+.card .card-content p {
+    padding-top: 10px;
+}
+
+.card .card-content p:last-child {
+    padding-bottom: 10px;
+    padding-top: 0;
 }
 
 /* Margins */
@@ -283,6 +337,14 @@ label {
     text-align: center;
     margin-bottom: 10px;
   }
+
+  .adoption_form label {
+    position: relative;
+  }
+
+  .input-field.col label {
+    left: 0;
+}
 }
 
 /* Media query for larger screens */
@@ -294,5 +356,9 @@ label {
   .equal-height-row > .col {
     display: flex;
     flex-direction: column;
+  }
+  .input-field.col.s12 {
+    margin-top: 0;
+    margin-bottom: 0;
   }
 }

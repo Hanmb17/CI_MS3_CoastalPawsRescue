@@ -31,6 +31,10 @@ def get_dogs():
 def get_login_signup():
     return render_template('login_signup.html')
 
+@app.route("/adoption_form")
+def adoption_form():
+    return render_template('adoption_form.html')
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

@@ -1,0 +1,204 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container">
+    <h1 class="center-align">Dog Adoption Form</h1>
+
+    <div class="row">
+        <div class="col s12">
+            <div class="card adoption_form">
+                <div class="card-content">
+                    <form action="/submit_adoption" method="post">
+
+                        <!-- Personal Information -->
+                        <h2 class="card-title"><span>About You</span></h2>
+                        <div class="row margin-0">
+                            <div class="input-field col s12 m6">
+                                <label for="first_name">First Name</label>
+                                <input  type="text" id="first_name" name="first_name" required>
+                            </div>
+                        
+                            <div class="input-field col s12 m6">
+                                <label for="last_name">Last Name</label>
+                                <input type="text" id="last_name" name="last_name" required>
+                            </div>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label  for="phone">Phone</label>
+                            <input  type="tel" id="phone" name="phone" required>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label  for="address_line1">Address line 1</label>
+                                <input  type="text" id="address_line1" name="address_line1" required>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="input-field col s12 m6">
+                                <label  for="city">City</label>
+                                <input  type="text" id="city" name="city">
+                            </div>
+                        
+                            <div class="input-field col s12 m6">
+                                <label  for="county">County/Borough</label>
+                                <input  type="text" id="county" name="county">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="input-field col s12 m6">
+                                <label  for="post_code">Post Code</label>
+                                <input  type="text" id="post_code" name="post_code" required>
+                            </div>
+                        </div>
+
+                        <!-- Dog Preferences -->
+                        <h2 class="card-title"><span>Preferences and Experience</span></h2>
+                        <div class="input-field">
+                            <label  for="interested_dog">Which dog are you interested in adopting?</label>
+                            <input  type="text" id="interested_dog" name="interested_dog" required>
+                            
+                        </div>
+
+                        <div class="input-field">
+                            <label  for="interested_dog">Why can you provide the best home for this dog?</label>
+                            <textarea  id="interested_dog" name="interested_dog" class="materialize-textarea white-text" required></textarea>
+                            
+                        </div>
+
+                        <div class="input-field">
+                            <label  for="experience">What is your experience with dogs?</label>
+                            <textarea  id="experience" name="experience" class="materialize-textarea" required></textarea>
+                            
+                        </div>
+
+                        <div class="input-field">
+                            <label  for="reason">Reason for adoption</label>
+                            <textarea  id="reason" name="reason" class="materialize-textarea white-text" required></textarea>
+                            
+                        </div>
+
+                        <!-- Other Pets and Family -->
+                        <h2 class="card-title"><span>Other Pets and Family</span></h2>
+
+                        <div class="input-field">
+                            <label class="radio-label">Do you own other dogs? If yes, please provide details.</label>
+                            <p>
+                                <label>
+                                    <input name="other_dogs_option" type="radio" value="yes" checked required/>
+                                    <span>Yes</span>
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    <input  name="other_dogs_option" type="radio" value="no" required />
+                                    <span>No</span>
+                                </label>
+                            </p>
+                        </div>
+
+                        <div class="input-field">
+                            <label  for="other_dogs">Details of other dogs</label>
+                            <input  type="text" id="other_dogs" name="other_dogs" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label class="radio-label" >Do you own other cats? If yes, please provide details.</label>
+                            <p>
+                                <label>
+                                    <input name="other_cats_option" type="radio" value="yes" checked required/>
+                                    <span>Yes</span>
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    <input name="other_cats_option" type="radio" value="no" required/>
+                                    <span>No</span>
+                                </label>
+                            </p>
+                        </div>
+
+
+                        <div class="input-field">
+                            <label for="other_cats">Details of other cats.</label>
+                            <input type="text" id="other_cats" name="other_cats" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label class="radio-label">Do you own other pets? If yes, please provide details.</label>
+                            <p>
+                                <label>
+                                    <input name="other_pets_option" type="radio" value="yes" checked required />
+                                    <span>Yes</span>
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    <input name="other_pets_option" type="radio" value="no" required />
+                                    <span>No</span>
+                                </label>
+                            </p>
+                        </div>
+
+                        <div class="input-field" id="other_pets_details">
+                            <label for="other_pets">Details of other pets</label>
+                            <input type="text" id="other_pets" name="other_pets" required>
+                            
+                        </div>
+
+                        <div class="input-field">
+                            <label class="radio-label" for="children">Do you have children in your household?*</label>
+                            <p>
+                                <label>
+                                    <input name="children" type="radio" value="yes" required checked />
+                                    <span>Yes</span>
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    <input name="children" type="radio" value="no" required />
+                                    <span>No</span>
+                                </label>
+                            </p>
+                            
+                        </div>
+
+                        <div class="input-field" id="other_pets_details">
+                            <label for="other_pets">What are the childrens age?</label>
+                            <input type="text" id="other_pets" name="other_pets" required>
+                        </div>
+
+                        <!-- Lifestyle and Commitment -->
+                        <h2 class="card-title"><span>Lifestyle and Commitment</span></h2>
+                        <div class="input-field">
+                            <label for="work_hours">How many hours per day will the dog be left alone?</label>
+                            <input type="number" id="work_hours" name="work_hours" required>
+                            
+                        </div>
+
+                        <div class="input-field">
+                            <label for="exercise_hours">How many hours of exercise can you provide daily?</label>
+                            <input type="number" id="exercise_hours" name="exercise_hours" required>
+                            
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="center-align">
+                            <button class="waves-effect waves-primary btn-large cta-button" type="submit">Submit Adoption Request</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    {% endblock %}
