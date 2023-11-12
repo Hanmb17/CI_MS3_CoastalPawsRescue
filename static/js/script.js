@@ -8,21 +8,7 @@ $(document).ready(function () {
         constrainWidth: true,
         coverTrigger: false
     });
-
-    $('#login-btn').click(function () {
-        $('#login-form').removeClass('hide');
-        $('#login-btn').addClass('active');
-        $('#signup-form').addClass('hide');
-        $('#signup-btn').removeClass('active');
-    });
-
-    $('#signup-btn').click(function () {
-        $('#login-form').addClass('hide');
-        $('#login-btn').removeClass('active');
-        $('#signup-form').removeClass('hide');
-        $('#signup-btn').addClass('active');
-    });
-
+s
     /*
     jQuery for removal of class on window resize
     */
@@ -52,6 +38,7 @@ $(document).ready(function () {
         handleClassOnResize(); 
     });
 
+
 });
 
 
@@ -75,4 +62,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var elems = document.querySelectorAll('.collapsible');
     var instances = M.Collapsible.init(elems);
     console.log("Collapsed")
+
+    
   });
+
