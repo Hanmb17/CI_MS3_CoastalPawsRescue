@@ -307,7 +307,10 @@ input[type=number]:not(.browser-default):focus:not([readonly])+label {
     padding-bottom: 10px;
     padding-top: 0;
 }
-
+/* flash messgaes */
+.flashes h4 {
+    font-size: 18px;
+}
 /* Margins */
 .margin-0 {
   margin: 0 auto;

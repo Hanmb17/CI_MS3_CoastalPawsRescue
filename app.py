@@ -1,9 +1,9 @@
 import os
 from flask import (
     Flask, flash, render_template,
-    redirect, request, session, url_for)
+    redirect, request, session, url_for
+)
 from flask_pymongo import PyMongo
-from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 
 if os.path.exists("env.py"):
@@ -20,7 +20,7 @@ mongo = PyMongo(app)
 
 @app.route("/")
 def home():
-    return render_template('index.html')
+    return render_template("index.html")
 
 
 @app.route("/get_dogs")
@@ -31,19 +31,64 @@ def get_dogs():
 
 @app.route("/get_login_signup")
 def get_login_signup():
-    return render_template('login_signup.html')
+    return render_template("login_signup.html")
 
-@app.route("/signup")
+
+@app.route("/signup", methods=["GET", "POST"])
 def signup():
-    return render_template('signup.html')
+    if request.method == "POST":
+        existing_user = mongo.db.users.find_one(
+            {
+                "$or": [
+                    {"username": request.form.get("username").lower()},
+                    {"email": request.form.get("email").lower()},
+                ]
+            }
+        )
+        # check if username and email already exists in db
+        if existing_user:
+            if (
+                existing_user.get("username") == request.form.get(
+                    "username").lower()
+                and existing_user.get("email") == request.form.get(
+                    "email").lower()
+            ):
+                flash(
+                    "Both username and email already exist. "
+                    "Please log in or use different username and email to "
+                    "create a new account."
+                )
+            elif existing_user.get("username") == request.form.get(
+                    "username").lower():
+                flash("Username already exists. Please choose a different "
+                      "one.")
+            elif existing_user.get("email") == request.form.get(
+                    "email").lower():
+                flash(
+                    "This email is already registered. "
+                    "Please log in or use a different email to create a "
+                    "new account."
+                )
+        else:
+            register = {
+                "username": request.form.get("username").lower(),
+                "email": request.form.get("email").lower(),
+                "password": generate_password_hash(request.form.get("password")),
+            }
+            mongo.db.users.insert_one(register)
+
+            # put the new user into 'session' cookie
+            session["user"] = request.form.get("username").lower()
+            flash("Registration Successful!")
+
+    return render_template("signup.html")
 
 
 @app.route("/adoption_form")
 def adoption_form():
-    return render_template('adoption_form.html')
+    return render_template("adoption_form.html")
 
 
 if __name__ == "__main__":
-    app.run(host=os.environ.get("IP"),
-            port=int(os.environ.get("PORT")),
-            debug=True)
+    app.run(host=os.environ.get("IP"), port=int(
+        os.environ.get("PORT")), debug=True)
