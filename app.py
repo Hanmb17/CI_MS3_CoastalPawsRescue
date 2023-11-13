@@ -103,6 +103,14 @@ def get_login_signup():
     return render_template("login_signup.html")
 
 
+@app.route("/logout")
+def logout():
+    # Remove the user from the session
+    session.pop("user", None)
+    flash("You have been logged out.")
+    return redirect(url_for("home"))
+
+
 @app.route("/adoption_form")
 def adoption_form():
     return render_template("adoption_form.html")
