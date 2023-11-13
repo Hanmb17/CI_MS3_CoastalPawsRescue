@@ -29,6 +29,11 @@ input {
   color: var(--text-color);
 }
 
+header, footer {
+    z-index: 1000;
+}
+
+
 /* Buttons */
 .btn-large,
 .btn-large:hover,
@@ -255,7 +260,8 @@ label {
 
 .login-btn.active,
 .signup-btn.active,
-.adoption_form .card-title span {
+.adoption_form .card-title span, 
+.profile-sidebar a.active {
   color: var(--white);
   font-weight: bolder;
   border-bottom: 2px solid var(--primary-red);
@@ -307,6 +313,40 @@ input[type=number]:not(.browser-default):focus:not([readonly])+label {
     padding-bottom: 10px;
     padding-top: 0;
 }
+
+/* Profile Page */
+
+.main-container {
+    display: flex;
+}
+
+.profile-sidebar {
+    background-color: var(--text-color);
+    padding: 20px;
+    box-sizing: border-box;
+    min-width: 250px;
+    color: var(--white);
+}
+
+.profile-sidebar li {
+    padding: 10px 0;
+}
+
+.profile-sidebar a {
+    color: var(--white);
+    font-family: var(--font-sans);
+}
+
+.main-content {
+    flex: 1;
+    padding-top: 15px;
+    text-align: center;
+    max-width: 1000px;
+    z-index: 1; 
+}
+
+
+
 /* flash messgaes */
 .flashes h4 {
     font-size: 18px;

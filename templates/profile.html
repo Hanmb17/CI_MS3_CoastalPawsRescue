@@ -1,0 +1,65 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="main-container"> 
+<div class="profile-sidebar hide-on-med-and-down">
+    <div class="profile-image">
+        <!-- Add the path to the user's profile image -->
+        <img src="path/to/profile-image.jpg" alt="Profile Image">
+    </div>
+    <div class="profile-links">
+        <ul>
+            <li><a href="#dashboard" class="active">Profile</a></li>
+            <li><a href="#favorites">Favorites</a></li>
+            <li><a href="#applications">Applications</a></li>
+            <li><a href="#edit-profile">Edit Profile</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="main-content ">
+    <!-- Welcome User Section -->
+    <section id="welcome" class="section">
+        <div class="row">
+            <div class="col m6 l8 left-align">
+        <h4>Welcome, {{ username }}</h4>
+        <p>Discover your new furry friend and make a difference in their lives.</p>
+            </div>
+            <div class="col m6 l4"  >
+        <!-- Space for Waggy Tail Gif -->
+        <img src="" alt="Waggy Tail Gif" class="responsive-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- Random Dog Generator Button -->
+    <section class="section">
+        <button id="random-dog-btn" class="btn waves-effect waves-light">Generate Random Dog</button>
+        <!-- Display the generated dog information here -->
+        <div id="random-dog-info"></div>
+    </section>
+
+    <!-- Favorites Section (Replace with your actual favorites content) -->
+    <section id="favorites" class="section">
+        <h5>Your Favorites</h5>
+        <!-- Add your favorites content here -->
+    </section>
+
+    <!-- Applications Section (Replace with your actual applications content) -->
+    <section id="applications" class="section">
+        <h5>Your Applications</h5>
+        <!-- Add your applications content here -->
+    </section>
+
+    <!-- Edit Profile Section (Replace with your actual edit profile content) -->
+    <section id="edit-profile" class="section">
+        <h5>Edit Your Profile</h5>
+        <!-- Add your edit profile content here -->
+    </section>
+
+
+</div>    
+
+</div>
+
+{% endblock %}
