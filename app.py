@@ -29,11 +29,6 @@ def get_dogs():
     return render_template("dogs.html", dogs=dogs)
 
 
-@app.route("/get_login_signup")
-def get_login_signup():
-    return render_template("login_signup.html")
-
-
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     if request.method == "POST":
@@ -73,7 +68,8 @@ def signup():
             register = {
                 "username": request.form.get("username").lower(),
                 "email": request.form.get("email").lower(),
-                "password": generate_password_hash(request.form.get("password")),
+                "password": generate_password_hash(request.form.get(
+                    "password")),
             }
             mongo.db.users.insert_one(register)
 
@@ -82,6 +78,29 @@ def signup():
             flash("Registration Successful!")
 
     return render_template("signup.html")
+
+
+@app.route("/get_login_signup", methods=["GET", "POST"])
+def get_login_signup():
+    if request.method == "POST":
+        # Check if the username exists in the database
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+
+        if existing_user:
+            # Check if the provided password matches the stored hashed password
+            if check_password_hash(
+                    existing_user["password"], request.form.get("password")):
+                session["user"] = existing_user["username"].lower()
+                flash("Login Successful!")
+                return redirect(url_for("home"))
+            else:
+                flash("Incorrect password. Please try again.")
+        else:
+            flash("Username not found. "
+                  "Please check your username or register.")
+
+    return render_template("login_signup.html")
 
 
 @app.route("/adoption_form")
