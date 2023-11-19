@@ -33,7 +33,7 @@
       <!-- Dropdown Elements-->
       <ul id="dropdown1" class="dropdown-content blue-font">
         <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-        <li class=""><a href="#">Add / Edit Dog Listings</a></li>
+        <li class=""><a href="{{ url_for('add_dog') }}">Add / Edit Dog Listings</a></li>
         <li class=""><a href="#">Adoption Requests</a></li>
         <li class=""><a href="#">Adoption Status</a></li>
         <li class=""><a href="#">Favourite Dogs</a></li>
@@ -69,7 +69,7 @@
         <li><a href="#">Contact Us</a></li>
         <li class=""><a href="{{ url_for('get_login_signup') }}">Log In / Sign Up</a></li>
         <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-        <li class=""><a href="#">Add / Edit Dog Listings</a></li>
+        <li class=""><a href="{{ url_for('add_dog') }}">Add / Edit Dog Listings</a></li>
         <li class=""><a href="#">Adoption Requests</a></li>
         <li class=""><a href="#">Adoption Status</a></li>
         <li class=""><a href="#">Favourite Dogs</a></li>

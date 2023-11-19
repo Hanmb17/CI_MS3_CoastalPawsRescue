@@ -8,7 +8,15 @@ $(document).ready(function () {
         constrainWidth: true,
         coverTrigger: false
     });
-s
+
+    $('.tooltipped').tooltip();
+    $('.datepicker').datepicker({
+        format: 'dd/mm/yyyy',
+        minDate: new Date('2000-01-01'),
+        maxDate: new Date(),
+        yearRange: [2000, new Date().getFullYear()],
+    });
+
     /*
     jQuery for removal of class on window resize
     */

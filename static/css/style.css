@@ -345,6 +345,83 @@ input[type=number]:not(.browser-default):focus:not([readonly])+label {
     z-index: 1; 
 }
 
+/* Add dog page */
+
+.gender-selector .fa-mars,
+.gender-selector .fa-venus {
+    color: var(--primary-blue); 
+}
+
+.gender-selector input:checked + .fa-mars {
+    color: #b0e0e6; 
+}
+
+.gender-selector input:checked + .fa-venus {
+    color: #ffb6c1; 
+}
+
+.size-selector,
+.gender-selector {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.gender-selector {
+    max-width: 130px;
+}
+.gender-selector label,
+.size-selector label {
+    position: relative;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.size-selector input {
+    display: none;
+}
+
+.size-selector i {
+    color: var(--primary-blue); /* Default color */
+}
+
+.size-selector input:checked + i {
+    color: var(--primary-red); /* Color when checked */
+}
+
+/* date picker */
+
+.datepicker-table td.is-today {
+    color: var(--primary-red);
+}
+
+.datepicker-date-display,
+.datepicker-table td.is-selected {
+    background-color: var(--primary-blue);
+    color:var(--white);
+}
+
+.datepicker-cancel, 
+.datepicker-clear {
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+/* Customize the date picker weekdays */
+.datepicker-weekday {
+    color: #e57373; /* Set your desired text color */
+}
+
+/* Customize the date picker days */
+.datepicker-day, .datepicker-day-text {
+    color: #333; /* Set your desired text color */
+}
+
+/* Customize the selected date */
+.datepicker-day-selected {
+    background-color: #e57373; /* Set your desired background color for selected date */
+    color: #fff; /* Set your desired text color for selected date */
+}
 
 
 /* flash messgaes */

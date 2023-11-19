@@ -115,6 +115,11 @@ def logout():
 def adoption_form():
     return render_template("adoption_form.html")
 
+@app.route("/add_dog")
+def add_dog():
+    return render_template("add_dog.html")
+
+
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     # grab the session user's username from db
