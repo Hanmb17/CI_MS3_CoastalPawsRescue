@@ -13,7 +13,10 @@
 }
 
 /* General Styles */
+
 h1,
+h2,
+h3,
 h5 {
   color: var(--primary-red);
   font-family: var(--font-cursive);
@@ -24,7 +27,7 @@ h5 {
 }
 
 body,
-input {
+input{
   font: normal 16px var(--font-sans);
   color: var(--text-color);
 }
@@ -53,6 +56,26 @@ header, footer {
   line-height: 1.2;
   padding: 10px;
 }
+
+
+.clear-button {
+    background-color: var(--white);
+    color: var(--text-color);
+    font-family: var(--font-sans);
+    height: fit-content;
+    line-height: 1.2;
+    box-shadow: none;
+    padding: 10px 0;
+  }
+
+  .clear-button:hover,
+  .clear-button:focus {
+    color: var(--text-color);
+    background-color: var(--white);
+    box-shadow: none;
+    font-weight: bolder;
+    text-decoration: underline;
+  }
 
 /* Navbar */
 nav {
@@ -172,7 +195,9 @@ input[type="email"]:not(.browser-default):focus:not([readonly]),
 input[type="tel"]:not(.browser-default):focus:not([readonly]),
 .input-field input[type="number"]:focus,
 input[type="number"]:not(.browser-default):focus:not([readonly]),
-textarea.materialize-textarea:focus:not([readonly]) {
+textarea.materialize-textarea:focus:not([readonly]),
+.input-field input[type="url"]:focus,
+input[type="url"]:not(.browser-default):focus:not([readonly]){
   border-bottom: 1px solid var(--primary-red);
   box-shadow: 0 1px 0 0 var(--primary-red);
 }
@@ -347,19 +372,6 @@ input[type=number]:not(.browser-default):focus:not([readonly])+label {
 
 /* Add dog page */
 
-.gender-selector .fa-mars,
-.gender-selector .fa-venus {
-    color: var(--primary-blue); 
-}
-
-.gender-selector input:checked + .fa-mars {
-    color: #b0e0e6; 
-}
-
-.gender-selector input:checked + .fa-venus {
-    color: #ffb6c1; 
-}
-
 .size-selector,
 .gender-selector {
     display: flex;
@@ -381,15 +393,29 @@ input[type=number]:not(.browser-default):focus:not([readonly])+label {
     display: none;
 }
 
-.size-selector i {
-    color: var(--primary-blue); /* Default color */
+.size-selector i,
+.gender-selector i {
+    color: var(--primary-blue); 
 }
 
-.size-selector input:checked + i {
-    color: var(--primary-red); /* Color when checked */
+.size-selector input:checked + i,
+.gender-selector input:checked + i {
+    color: var(--primary-red); 
 }
 
 /* date picker */
+
+
+.add-dog-form .input-field>label,
+.add-dog-form textarea.materialize-textarea:focus:not([readonly])+label,
+.add-dog-form input[type=text]:not(.browser-default):focus:not([readonly])+label,
+.add-dog-form input[type=password]:not(.browser-default):focus:not([readonly])+label,
+.add-dog-form input[type=email]:not(.browser-default):focus:not([readonly])+label,
+.add-dog-form input[type=tel]:not(.browser-default):focus:not([readonly])+label,
+.add-dog-form input[type=number]:not(.browser-default):focus:not([readonly])+label,
+.add-dog-form input[type=url]:not(.browser-default):focus:not([readonly])+label  {
+    color: var(--text-color);
+}
 
 .datepicker-table td.is-today {
     color: var(--primary-red);
@@ -402,27 +428,15 @@ input[type=number]:not(.browser-default):focus:not([readonly])+label {
 }
 
 .datepicker-cancel, 
-.datepicker-clear {
+.datepicker-done {
     color: var(--text-color);
     font-weight: bold;
 }
 
-/* Customize the date picker weekdays */
-.datepicker-weekday {
-    color: #e57373; /* Set your desired text color */
+.dog-compatibility [type="radio"]:not(:checked)+span:before, 
+.dog-compatibility [type="radio"]:not(:checked)+span:after {
+    border: 2px solid var(--text-color);
 }
-
-/* Customize the date picker days */
-.datepicker-day, .datepicker-day-text {
-    color: #333; /* Set your desired text color */
-}
-
-/* Customize the selected date */
-.datepicker-day-selected {
-    background-color: #e57373; /* Set your desired background color for selected date */
-    color: #fff; /* Set your desired text color for selected date */
-}
-
 
 /* flash messgaes */
 .flashes h4 {
@@ -444,6 +458,12 @@ input[type=number]:not(.browser-default):focus:not([readonly])+label {
 .side-padding {
   padding: 0 15px;
 }
+
+.left-padding {
+    padding-left: .75rem;
+}
+
+
 
 /* Media query */
 @media screen and (max-width: 600px) {
@@ -471,12 +491,19 @@ input[type=number]:not(.browser-default):focus:not([readonly])+label {
 @media screen and (min-width: 768px) {
   .equal-height-row {
     display: flex;
+    flex-wrap: wrap;
   }
 
   .equal-height-row > .col {
+    flex: 1;
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
   }
+  .equal-height-row > .col .input-field {
+    flex: 1;
+}
+
   .input-field.col.s12 {
     margin-top: 0;
     margin-bottom: 0;
