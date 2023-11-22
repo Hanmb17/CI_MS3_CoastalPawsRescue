@@ -5,6 +5,7 @@ from flask import (
 )
 from flask_pymongo import PyMongo
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
 
 if os.path.exists("env.py"):
     import env
@@ -115,8 +116,40 @@ def logout():
 def adoption_form():
     return render_template("adoption_form.html")
 
-@app.route("/add_dog")
+@app.route("/add_dog", methods=['POST', 'GET'])
 def add_dog():
+    if request.method == "POST":
+        dob_str = request.form.get('dob')
+        dob_date = datetime.strptime(dob_str, '%m/%d/%Y')
+
+        existing_dog = mongo.db.dogs.find_one({
+            'Name': request.form['name'],
+            'Breed': request.form['breed'],
+            'DateOfBirth': dob_date
+        })
+
+        if existing_dog:
+            flash("Error: Dog with the same name, breed, and date of birth already exists!")
+
+        dog_info = {
+            'Name': request.form.get('name'),
+            'Breed': request.form.get('breed'),
+            'DateOfBirth': dob_date,
+            'Gender': request.form.get('gender'),
+            'Size': request.form.get('size'),
+            'Description': request.form.get('description'),
+            'CanBeLeftAlone': request.form.get('left_alone'),
+            'CanLiveWithDogs': request.form.get('live_with_dogs'),
+            'CanLiveWithCats': request.form.get('live_with_cats'),
+            'CanLiveWithChildren': request.form.get('live_with_children'),
+            'DailyExerciseRequired': request.form.get('exercise_required'),
+            'ImageURL': request.form.get('image_url')
+        }
+
+        dogs = mongo.db.dogs.insert_one(dog_info)
+        flash("Dog Successfully Added")
+
+
     return render_template("add_dog.html")
 
 

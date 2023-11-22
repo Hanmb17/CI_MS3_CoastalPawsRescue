@@ -2,7 +2,7 @@
 <section>
   <div class="container">
     <h1 class="center">Add a dog for adoption</h1>
-    <form action="/submit_dog" method="post" class="add-dog-form">
+    <form action="{{ url_for('add_dog') }}" method="post" class="add-dog-form">
       <!-- Dog Information -->
       <h2>Dog Information</h2>
       <div class="row">
@@ -91,11 +91,11 @@
         <div class="col s12 m6">
           <p>Can be left alone:</p>
           <label>
-            <input type="radio" name="alone" value="Yes" />
+            <input type="radio" name="left_alone" value="Yes" />
             <span>Yes</span>
           </label>
           <label>
-            <input type="radio" name="alone" value="No" />
+            <input type="radio" name="left_alone" value="No" />
             <span>No</span>
           </label>
         </div>
@@ -103,11 +103,11 @@
         <div class="col s12 m6">
           <p>Can live with dogs:</p>
           <label>
-            <input type="radio" name="withDogs" value="Yes" />
+            <input type="radio" name="live_with_dogs" value="Yes" />
             <span>Yes</span>
           </label>
           <label>
-            <input type="radio" name="withDogs" value="No" />
+            <input type="radio" name="live_with_dogs" value="No" />
             <span>No</span>
           </label>
         </div>
@@ -115,11 +115,11 @@
         <div class="col s12 m6">
           <p>Can live with cats:</p>
           <label>
-            <input type="radio" name="withCats" value="Yes" />
+            <input type="radio" name="live_with_cats" value="Yes" />
             <span>Yes</span>
           </label>
           <label>
-            <input type="radio" name="withCats" value="No" />
+            <input type="radio" name="live_with_cats" value="No" />
             <span>No</span>
           </label>
         </div>
@@ -127,19 +127,19 @@
         <div class="col s12 m6">
           <p>Can live with children:</p>
           <label>
-            <input type="radio" name="withChildren" value="Yes" />
+            <input type="radio" name="live_with_children" value="Yes" />
             <span>Yes</span>
           </label>
           <label>
-            <input type="radio" name="withChildren" value="No" />
+            <input type="radio" name="live_with_children" value="No" />
             <span>No</span>
           </label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input type="text" id="exercise" name="exercise" required />
-          <label for="exercise">Daily exercise required</label>
+          <input type="text" id="exercise_required" name="exercise_required" required />
+          <label for="exercise_required">Daily exercise required</label>
         </div>
       </div>
 
@@ -148,8 +148,8 @@
       <!-- Image URL -->
       <div class="row">
         <div class="input-field col s12">
-          <input type="url" id="imageURL" name="imageURL" required />
-          <label for="imageURL">Image URL</label>
+          <input type="url" id="image_url" name="image_url" required />
+          <label for="image_url">Image URL</label>
         </div>
       </div>
 
