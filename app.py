@@ -30,6 +30,7 @@ def get_dogs():
     return render_template("dogs.html", dogs=dogs)
 
 
+
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     if request.method == "POST":
@@ -151,6 +152,11 @@ def add_dog():
 
 
     return render_template("add_dog.html")
+
+
+@app.route("/admin_profile")
+def admin_profile():
+    return render_template("admin_profile.html")
 
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
