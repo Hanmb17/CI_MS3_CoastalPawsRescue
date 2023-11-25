@@ -159,6 +159,15 @@ def admin_profile():
     return render_template("admin_profile.html")
 
 
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+    dogs = list(mongo.db.dogs.find({"name": {"$regex": query, "$options": "i"}}))
+    display_results = True
+    return render_template("admin_profile.html", dogs=dogs, display_results=display_results)
+
+
+
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     # grab the session user's username from db

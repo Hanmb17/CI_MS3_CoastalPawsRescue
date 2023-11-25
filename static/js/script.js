@@ -17,6 +17,18 @@ $(document).ready(function () {
         yearRange: [2000, new Date().getFullYear()],
     });
 
+     /*
+     Show search results for dogs when searched by name
+    */
+     var searchResults = $("#searchDogsNameResults");
+     var displayResultsFlag = searchResults.data("display-results");
+
+    if (displayResultsFlag === "False") {
+        searchResults.addClass("hide");
+        } else {
+            searchResults.removeClass("hide"); 
+        }
+
     /*
     jQuery for removal of class on window resize
     */
