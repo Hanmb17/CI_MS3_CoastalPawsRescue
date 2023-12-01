@@ -1,20 +1,18 @@
 {% extends "base.html" %} {% block content %}
-<section>"
+<section>
     <div class="card">
   <div class="container">
     <h1 class="center">Edit {{ dog.name }}'s details</h1>
-    <div class="container">
         <div class="row">
-            <div class="col s12 m4">
-                <img src="" alt="">
+            <div class="col s12 m6">
+                <img class="responsive-img" src="{{ dog.imageURL }}" alt="">
             </div>
-            <div class="col s12 m8">
+            <div class="col s12 m6">
                 <ul>
                 <li>Breed: {{ dog.breed}} </li>
                 <li>Age: {{dog_age}}</li>
                </ul>
             </div>
-        </div>
     </div>
 </div>
 </div>
@@ -78,13 +76,13 @@
               <i class="fas fa-dog fa-2x"></i>
             </label>
 
-            <label class="tooltipped" data-position="top" data-tooltip="Medium" {% if dog.size == "Medium" %}checked{% endif %}>
-              <input type="radio" name="size" value="Medium" class="" checked />
+            <label class="tooltipped" data-position="top" data-tooltip="Medium" >
+              <input type="radio" name="size" value="Medium" class="" {% if dog.size == "Medium" %}checked{% endif %} />
               <i class="fas fa-dog fa-3x"></i>
             </label>
 
-            <label class="tooltipped" data-position="top" data-tooltip="Large" {% if dog.size == "Large" %}checked{% endif %}>
-              <input type="radio" name="size" value="Large" class="with-gap" />
+            <label class="tooltipped" data-position="top" data-tooltip="Large">
+              <input type="radio" name="size" value="Large" class="with-gap" {% if dog.size == "Large" %}checked{% endif %} />
               <i class="fas fa-dog fa-4x"></i>
             </label>
           </div>
@@ -155,7 +153,7 @@
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input type="text" id="exercise_required" name="exercise_required"  value="{{ dog.dailyExerciseRequired }}" required />
+          <input type="text" id="exercise_required" name="exercise_required" value="{{ dog.dailyExerciseRequired }}" required />
           <label for="exercise_required">Daily exercise required</label>
         </div>
       </div>
@@ -165,7 +163,7 @@
       <!-- Image URL -->
       <div class="row">
         <div class="input-field col s12">
-          <input type="url" id="image_url" name="image_url" required />
+          <input type="url" id="image_url" name="image_url" value="{{ dog.imageURL }}" required />
           <label for="image_url">Image URL</label>
         </div>
       </div>
@@ -173,12 +171,12 @@
       <!-- Submit Button -->
       <div class="row">
         <div class="col s6 m4 l4">
-          <button
+          <a href="{{ url_for('edit_dog', dog_id=dog._id) }}"
             class="waves-effect  btn-large clear-button"
             type="reset"
           >
             Reset Form
-          </button>
+        </a>
         </div>
         <div class="col s6 m4 l4">
           <button
