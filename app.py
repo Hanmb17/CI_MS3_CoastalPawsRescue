@@ -247,6 +247,11 @@ def edit_dog(dog_id):
 def search():
     query = request.form.get("query")
     dogs = list(mongo.db.dogs.find({"name": {"$regex": query, "$options": "i"}}))
+    # Calculate age for each dog based on date of birth
+    for dog in dogs:
+        dob = dog.get('dateOfBirth')
+        dog['age'] = calculate_dog_age(dob)
+
     display_results = True
     return render_template("admin_profile.html", dogs=dogs, display_results=display_results)
 
