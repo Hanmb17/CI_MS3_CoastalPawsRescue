@@ -4,6 +4,7 @@ from flask import (
     redirect, request, session, url_for
 )
 from flask_pymongo import PyMongo
+from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 
@@ -28,7 +29,6 @@ def home():
 def get_dogs():
     dogs = mongo.db.dogs.find()
     return render_template("dogs.html", dogs=dogs)
-
 
 
 @app.route("/signup", methods=["GET", "POST"])
@@ -158,9 +158,10 @@ def add_dog():
 def admin_profile():
     return render_template("admin_profile.html")
 
-@app.route("/edit_dog", methods=["GET", "POST"])
-def edit_dog():
-    return render_template("edit_dog.html")
+@app.route("/edit_dog/<dog_id>", methods=["POST", "GET"])
+def edit_dog(dog_id):
+    dog = mongo.db.dogs.find_one({'_id': ObjectId(dog_id)})
+    return render_template("edit_dog.html", dog=dog)
 
 
 @app.route("/search", methods=["GET", "POST"])
