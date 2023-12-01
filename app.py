@@ -6,7 +6,7 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
-from datetime import datetime, date
+from datetime import datetime
 
 if os.path.exists("env.py"):
     import env
@@ -202,6 +202,9 @@ def edit_dog(dog_id):
     # Calculating the age using the utility function
     dog_age = calculate_dog_age(dob)
 
+    # Format the date in the desired format
+    formatted_dob = dob.strftime('%d/%m/%Y') if dob else None
+
     if request.method == "POST":
         dob_str = request.form.get('dob')
         dob_date = datetime.strptime(dob_str, '%d/%m/%Y')
@@ -237,7 +240,7 @@ def edit_dog(dog_id):
 
         return redirect(request.url)  # Redirect to the current URL
 
-    return render_template("edit_dog.html", dog=dog, dog_age=dog_age)
+    return render_template("edit_dog.html", dog=dog, dog_age=dog_age, formatted_dob=formatted_dob)
 
 
 @app.route("/search", methods=["GET", "POST"])
