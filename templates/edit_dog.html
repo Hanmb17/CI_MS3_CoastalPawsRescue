@@ -29,13 +29,13 @@
         </div>
 
         <div class="input-field col s12 m6">
-          <input type="text" id="breed" name="breed" required />
+          <input type="text" id="breed" name="breed" value="{{ dog.breed }}" required />
           <label for="breed">Breed</label>
         </div>
       </div>
       <div class="row equal-height-row">
         <div class="input-field col s12 m6">
-          <input type="text" id="dob" class="datepicker" name="dob" required />
+          <input type="text" id="dob" class="datepicker" name="dob" value="{{ dog.dateOfBirth }}"required />
           <label for="dob">Date of Birth</label>
         </div>
 
@@ -47,7 +47,7 @@
               data-position="bottom"
               data-tooltip="Male"
             >
-              <input type="radio" name="gender" value="Male" class="with-gap" />
+              <input type="radio" name="gender" value="Male" class="" {% if dog.gender == "Male" %}checked{% endif %} />
               <i class="fas fa-mars fa-2x"></i>
             </label>
 
@@ -61,7 +61,7 @@
                 name="gender"
                 value="Female"
                 class=""
-                checked
+                {% if dog.gender == "Female" %}checked{% endif %} 
               />
               <i class="fas fa-venus fa-2x"></i>
             </label>
@@ -74,16 +74,16 @@
           <p>Select Size:</p>
           <div class="size-selector">
             <label class="tooltipped" data-position="top" data-tooltip="Small">
-              <input type="radio" name="size" value="Small" class="with-gap" />
+              <input type="radio" name="size" value="Small" class="with-gap" {% if dog.size == "Small" %}checked{% endif %} />
               <i class="fas fa-dog fa-2x"></i>
             </label>
 
-            <label class="tooltipped" data-position="top" data-tooltip="Medium">
+            <label class="tooltipped" data-position="top" data-tooltip="Medium" {% if dog.size == "Medium" %}checked{% endif %}>
               <input type="radio" name="size" value="Medium" class="" checked />
               <i class="fas fa-dog fa-3x"></i>
             </label>
 
-            <label class="tooltipped" data-position="top" data-tooltip="Large">
+            <label class="tooltipped" data-position="top" data-tooltip="Large" {% if dog.size == "Large" %}checked{% endif %}>
               <input type="radio" name="size" value="Large" class="with-gap" />
               <i class="fas fa-dog fa-4x"></i>
             </label>
@@ -96,7 +96,7 @@
             name="description"
             class="materialize-textarea"
             required
-          ></textarea>
+          >{{ dog.description }}</textarea>
           <label for="description">Description</label>
         </div>
       </div>
@@ -108,11 +108,11 @@
         <div class="col s12 m6">
           <p>Can be left alone:</p>
           <label>
-            <input type="radio" name="left_alone" value="Yes" />
+            <input type="radio" name="left_alone" value="Yes" {% if dog.canBeLeftAlone == 'Yes' %}checked{% endif %} />
             <span>Yes</span>
           </label>
           <label>
-            <input type="radio" name="left_alone" value="No" />
+            <input type="radio" name="left_alone" value="No" {% if dog.canBeLeftAlone== 'No' %}checked{% endif %} />
             <span>No</span>
           </label>
         </div>
@@ -120,11 +120,11 @@
         <div class="col s12 m6">
           <p>Can live with dogs:</p>
           <label>
-            <input type="radio" name="live_with_dogs" value="Yes" />
+            <input type="radio" name="live_with_dogs" value="Yes" {% if dog.canLiveWithDogs == 'Yes' %}checked{% endif %} />
             <span>Yes</span>
           </label>
           <label>
-            <input type="radio" name="live_with_dogs" value="No" />
+            <input type="radio" name="live_with_dogs" value="No" {% if dog.canLiveWithDogs == 'No' %}checked{% endif %} />
             <span>No</span>
           </label>
         </div>
@@ -132,11 +132,11 @@
         <div class="col s12 m6">
           <p>Can live with cats:</p>
           <label>
-            <input type="radio" name="live_with_cats" value="Yes" />
+            <input type="radio" name="live_with_cats" value="Yes" {% if dog.canLiveWithCats== 'Yes' %}checked{% endif %} />
             <span>Yes</span>
           </label>
           <label>
-            <input type="radio" name="live_with_cats" value="No" />
+            <input type="radio" name="live_with_cats" value="No" {% if dog.canLiveWithCats == 'No' %}checked{% endif %} />
             <span>No</span>
           </label>
         </div>
@@ -144,18 +144,18 @@
         <div class="col s12 m6">
           <p>Can live with children:</p>
           <label>
-            <input type="radio" name="live_with_children" value="Yes" />
+            <input type="radio" name="live_with_children" value="Yes" {% if dog.canLiveWithChildren == 'Yes' %}checked{% endif %} />
             <span>Yes</span>
           </label>
           <label>
-            <input type="radio" name="live_with_children" value="No" />
+            <input type="radio" name="live_with_children" value="No" {% if dog.canLiveWithChildren == 'No' %}checked{% endif %} />
             <span>No</span>
           </label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input type="text" id="exercise_required" name="exercise_required" required />
+          <input type="text" id="exercise_required" name="exercise_required"  value="{{ dog.dailyExerciseRequired }}" required />
           <label for="exercise_required">Daily exercise required</label>
         </div>
       </div>

@@ -6,7 +6,7 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
-from datetime import datetime
+from datetime import datetime, date
 
 if os.path.exists("env.py"):
     import env
@@ -20,6 +20,8 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 # Utility function to calculate dog's age
+
+
 def calculate_dog_age(dob):
     """
     Calculate the age of a dog based on its date of birth.
@@ -36,8 +38,10 @@ def calculate_dog_age(dob):
     today = date.today()
 
     # Calculate the difference in years and months
-    age_years = today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day))
-    age_months = today.month - dob.month + 12 * ((today.month, today.day) < (dob.month, dob.day))
+    age_years = today.year - dob.year - \
+        ((today.month, today.day) < (dob.month, dob.day))
+    age_months = today.month - dob.month + 12 * \
+        ((today.month, today.day) < (dob.month, dob.day))
 
     # Format the age as "years and months"
     if age_years == 0:
@@ -145,11 +149,12 @@ def logout():
 def adoption_form():
     return render_template("adoption_form.html")
 
+
 @app.route("/add_dog", methods=['POST', 'GET'])
 def add_dog():
     if request.method == "POST":
         dob_str = request.form.get('dob')
-        dob_date = datetime.strptime(dob_str, '%m/%d/%Y')
+        dob_date = datetime.strptime(dob_str, '%d/%m/%Y')
 
         existing_dog = mongo.db.dogs.find_one({
             'Name': request.form['name'],
@@ -158,26 +163,26 @@ def add_dog():
         })
 
         if existing_dog:
-            flash("Error: Dog with the same name, breed, and date of birth already exists!")
+            flash(
+                "Error: Dog with the same name, breed, and date of birth already exists!")
 
         dog_info = {
-            'Name': request.form.get('name'),
-            'Breed': request.form.get('breed'),
-            'DateOfBirth': dob_date,
-            'Gender': request.form.get('gender'),
-            'Size': request.form.get('size'),
-            'Description': request.form.get('description'),
-            'CanBeLeftAlone': request.form.get('left_alone'),
-            'CanLiveWithDogs': request.form.get('live_with_dogs'),
-            'CanLiveWithCats': request.form.get('live_with_cats'),
-            'CanLiveWithChildren': request.form.get('live_with_children'),
-            'DailyExerciseRequired': request.form.get('exercise_required'),
-            'ImageURL': request.form.get('image_url')
+            'name': request.form.get('name'),
+            'breed': request.form.get('breed'),
+            'dateOfBirth': dob_date,
+            'gender': request.form.get('gender'),
+            'size': request.form.get('size'),
+            'description': request.form.get('description'),
+            'canBeLeftAlone': request.form.get('left_alone'),
+            'canLiveWithDogs': request.form.get('live_with_dogs'),
+            'canLiveWithCats': request.form.get('live_with_cats'),
+            'canLiveWithChildren': request.form.get('live_with_children'),
+            'dailyExerciseRequired': request.form.get('exercise_required'),
+            'imageURL': request.form.get('image_url')
         }
 
         dogs = mongo.db.dogs.insert_one(dog_info)
         flash("Dog Successfully Added")
-
 
     return render_template("add_dog.html")
 
@@ -186,17 +191,51 @@ def add_dog():
 def admin_profile():
     return render_template("admin_profile.html")
 
+
 @app.route("/edit_dog/<dog_id>", methods=["POST", "GET"])
 def edit_dog(dog_id):
     dog = mongo.db.dogs.find_one({'_id': ObjectId(dog_id)})
-    print(dog)
 
-    # Accessing dateOfBirth from the MongoDB document
+    # Access dateOfBirth from the MongoDB document
     dob = dog.get('dateOfBirth')
 
     # Calculating the age using the utility function
     dog_age = calculate_dog_age(dob)
-    print(dog_age)
+
+    if request.method == "POST":
+        dob_str = request.form.get('dob')
+        dob_date = datetime.strptime(dob_str, '%d/%m/%Y')
+
+        print(f"Updating dog with ID: {dog_id}")
+
+        result = mongo.db.dogs.update_one(
+            {'_id': ObjectId(dog_id)},
+            {
+                '$set': {
+                    'name': request.form.get('name'),
+                    'breed': request.form.get('breed'),
+                    'dateOfBirth': dob_date,
+                    'gender': request.form.get('gender'),
+                    'size': request.form.get('size'),
+                    'description': request.form.get('description'),
+                    'canBeLeftAlone': request.form.get('left_alone'),
+                    'canLiveWithDogs': request.form.get('live_with_dogs'),
+                    'canLiveWithCats': request.form.get('live_with_cats'),
+                    'canLiveWithChildren': request.form.get('live_with_children'),
+                    'dailyExerciseRequired': request.form.get('exercise_required'),
+                    'imageURL': request.form.get('image_url')
+                }
+            }
+        )
+
+        print(f"Modified count: {result.modified_count}")
+
+        if result.modified_count > 0:
+            flash('Dog listing updated successfully', 'success')
+        else:
+            flash('Failed to update dog listing', 'danger')
+
+        return redirect(request.url)  # Redirect to the current URL
 
     return render_template("edit_dog.html", dog=dog, dog_age=dog_age)
 
