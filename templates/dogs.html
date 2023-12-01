@@ -88,7 +88,7 @@
     <div class="col s12 m6 l4">
       <div class="card">
         <div class="card-image">
-          <img src="{{ dog.image_url }}" alt="{{ dog.name }} Image" />
+          <img class="responsive-img" src="{{ dog.imageURL }}" alt="{{ dog.name }}'s Image" />
           <span class="card-banner">
             {% if dog.status == "new" %} New {% elif dog.status == "rehomed" %}
             Rehomed {% elif dog.status == "under_application" %} Under

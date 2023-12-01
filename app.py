@@ -59,7 +59,13 @@ def home():
 
 @app.route("/get_dogs")
 def get_dogs():
-    dogs = mongo.db.dogs.find()
+    dogs = list(mongo.db.dogs.find())
+    
+    # Calculate age for each dog
+    for dog in dogs:
+        dob = dog.get('dateOfBirth')
+        dog['age'] = calculate_dog_age(dob)
+    
     return render_template("dogs.html", dogs=dogs)
 
 
