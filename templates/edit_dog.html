@@ -1,0 +1,195 @@
+{% extends "base.html" %} {% block content %}
+<section>"
+    <div class="card">
+  <div class="container">
+    <h1 class="center">Edit dog-name details</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m4">
+                <img src="" alt="">
+            </div>
+            <div class="col s12 m8">
+                <ul>
+                <li>Breed: </li>
+                <li>Age: </li>
+               </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="container">
+    <form action="{{ url_for('edit_dog') }}" method="post" class="add-dog-form">
+      <!-- Dog Information -->
+      <h2>Dog Information</h2>
+      <div class="row">
+        <div class="input-field col s12 m6">
+          <input type="text" id="name" name="name" required />
+          <label for="name">Name</label>
+        </div>
+
+        <div class="input-field col s12 m6">
+          <input type="text" id="breed" name="breed" required />
+          <label for="breed">Breed</label>
+        </div>
+      </div>
+      <div class="row equal-height-row">
+        <div class="input-field col s12 m6">
+          <input type="text" id="dob" class="datepicker" name="dob" required />
+          <label for="dob">Date of Birth</label>
+        </div>
+
+        <div class="input-field col s12 m6">
+          <p>Select Gender:</p>
+          <div class="gender-selector">
+            <label
+              class="tooltipped"
+              data-position="bottom"
+              data-tooltip="Male"
+            >
+              <input type="radio" name="gender" value="Male" class="with-gap" />
+              <i class="fas fa-mars fa-2x"></i>
+            </label>
+
+            <label
+              class="tooltipped"
+              data-position="bottom"
+              data-tooltip="Female"
+            >
+              <input
+                type="radio"
+                name="gender"
+                value="Female"
+                class=""
+                checked
+              />
+              <i class="fas fa-venus fa-2x"></i>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col m12 l6">
+          <p>Select Size:</p>
+          <div class="size-selector">
+            <label class="tooltipped" data-position="top" data-tooltip="Small">
+              <input type="radio" name="size" value="Small" class="with-gap" />
+              <i class="fas fa-dog fa-2x"></i>
+            </label>
+
+            <label class="tooltipped" data-position="top" data-tooltip="Medium">
+              <input type="radio" name="size" value="Medium" class="" checked />
+              <i class="fas fa-dog fa-3x"></i>
+            </label>
+
+            <label class="tooltipped" data-position="top" data-tooltip="Large">
+              <input type="radio" name="size" value="Large" class="with-gap" />
+              <i class="fas fa-dog fa-4x"></i>
+            </label>
+          </div>
+        </div>
+
+        <div class="input-field col s12">
+          <textarea
+            id="description"
+            name="description"
+            class="materialize-textarea"
+            required
+          ></textarea>
+          <label for="description">Description</label>
+        </div>
+      </div>
+
+      <!-- Compatibility -->
+      <h3>Compatibility & Exercise Requirements</h3>
+
+      <div class="row dog-compatibility">
+        <div class="col s12 m6">
+          <p>Can be left alone:</p>
+          <label>
+            <input type="radio" name="left_alone" value="Yes" />
+            <span>Yes</span>
+          </label>
+          <label>
+            <input type="radio" name="left_alone" value="No" />
+            <span>No</span>
+          </label>
+        </div>
+
+        <div class="col s12 m6">
+          <p>Can live with dogs:</p>
+          <label>
+            <input type="radio" name="live_with_dogs" value="Yes" />
+            <span>Yes</span>
+          </label>
+          <label>
+            <input type="radio" name="live_with_dogs" value="No" />
+            <span>No</span>
+          </label>
+        </div>
+
+        <div class="col s12 m6">
+          <p>Can live with cats:</p>
+          <label>
+            <input type="radio" name="live_with_cats" value="Yes" />
+            <span>Yes</span>
+          </label>
+          <label>
+            <input type="radio" name="live_with_cats" value="No" />
+            <span>No</span>
+          </label>
+        </div>
+
+        <div class="col s12 m6">
+          <p>Can live with children:</p>
+          <label>
+            <input type="radio" name="live_with_children" value="Yes" />
+            <span>Yes</span>
+          </label>
+          <label>
+            <input type="radio" name="live_with_children" value="No" />
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="text" id="exercise_required" name="exercise_required" required />
+          <label for="exercise_required">Daily exercise required</label>
+        </div>
+      </div>
+
+      <!-- Exercise Requirements -->
+      <h3>Image of Dog</h3>
+      <!-- Image URL -->
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="url" id="image_url" name="image_url" required />
+          <label for="image_url">Image URL</label>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="row">
+        <div class="col s6 m4 l4">
+          <button
+            class="waves-effect  btn-large clear-button"
+            type="reset"
+          >
+            Reset Form
+          </button>
+        </div>
+        <div class="col s6 m4 l4">
+          <button
+            class="waves-effect  btn-large cta-button"
+            type="submit"
+          >
+            Edit Listing
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <section>{% endblock %}</section>
+</section>

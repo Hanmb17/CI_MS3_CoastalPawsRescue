@@ -158,6 +158,10 @@ def add_dog():
 def admin_profile():
     return render_template("admin_profile.html")
 
+@app.route("/edit_dog", methods=["GET", "POST"])
+def edit_dog():
+    return render_template("edit_dog.html")
+
 
 @app.route("/search", methods=["GET", "POST"])
 def search():

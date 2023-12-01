@@ -466,6 +466,7 @@ input[type=number]:not(.browser-default):focus:not([readonly])+label {
 
 
 
+
 /* Media query */
 @media screen and (max-width: 600px) {
   .footer-main .col {
