@@ -19,6 +19,34 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
+# Utility function to calculate dog's age
+def calculate_dog_age(dob):
+    """
+    Calculate the age of a dog based on its date of birth.
+
+    Arguments:
+        dob (datetime.date or None): The date of birth of the dog.
+
+    Returns:
+        string: The age of the dog in years and months or "Unknown" if the date of birth is not provided.
+    """
+    if dob is None:
+        return "Unknown"
+
+    today = date.today()
+
+    # Calculate the difference in years and months
+    age_years = today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day))
+    age_months = today.month - dob.month + 12 * ((today.month, today.day) < (dob.month, dob.day))
+
+    # Format the age as "years and months"
+    if age_years == 0:
+        return f"{age_months} months"
+    elif age_years == 1:
+        return f"{age_years} year and {age_months} months"
+    else:
+        return f"{age_years} years and {age_months} months"
+
 
 @app.route("/")
 def home():
@@ -161,7 +189,16 @@ def admin_profile():
 @app.route("/edit_dog/<dog_id>", methods=["POST", "GET"])
 def edit_dog(dog_id):
     dog = mongo.db.dogs.find_one({'_id': ObjectId(dog_id)})
-    return render_template("edit_dog.html", dog=dog)
+    print(dog)
+
+    # Accessing dateOfBirth from the MongoDB document
+    dob = dog.get('dateOfBirth')
+
+    # Calculating the age using the utility function
+    dog_age = calculate_dog_age(dob)
+    print(dog_age)
+
+    return render_template("edit_dog.html", dog=dog, dog_age=dog_age)
 
 
 @app.route("/search", methods=["GET", "POST"])
