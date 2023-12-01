@@ -274,6 +274,14 @@ label {
   margin-left: 5px;
 }
 
+.green-icon {
+    color: #2ecc71;
+}
+
+.red-icon {
+    color: #e74c3c;
+}
+
 /* Log In - Sign Up Page */
 
 .login-btn,
@@ -370,7 +378,6 @@ input[type=number]:not(.browser-default):focus:not([readonly])+label {
     max-width: 1000px;
     z-index: 1; 
 }
-
 
 /* Add dog page */
 

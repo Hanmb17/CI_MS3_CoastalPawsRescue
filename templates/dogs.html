@@ -99,31 +99,33 @@
           <span class="card-title center">
             <span class="dog-name">{{ dog.name }} </span>
             <span class="gender-icon">
-              {% if dog.gender == "male" %}
-              <i class="fa-solid fa-mars" title="male"></i>
-              {% else %}
-              <i class="fa-solid fa-venus" title="Female"></i>
-              {% endif %}
+                {% if dog.gender == "Male" %}
+                <i class="fa-solid fa-mars" title="Male"></i>
+            {% elif dog.gender == "Female" %}
+                <i class="fa-solid fa-venus" title="Female"></i>
+            {% else %}
+                <!-- No icon shown if unknown gender -->
+            {% endif %}
             </span>
           </span>
           <p><strong>Age:</strong> {{ dog.age }}</p>
           <p><strong>Breed:</strong> {{ dog.breed }}</p>
           <div class="icons-section">
             <i
-              class="fas fa-dog"
-              title="{{ 'Can live with other dogs' if dog.can_live_with_other_dogs else 'Cannot live with other dogs' }}"
+              class="fas fa-dog {% if dog.canLiveWithDogs == 'Yes' %}green-icon{% else %}red-icon{% endif %}"
+              title="{{ 'Can live with other dogs' if dog.canLiveWithDogs  == 'Yes' else 'Cannot live with other dogs' }}"
             ></i>
             <i
-              class="fas fa-cat icon"
-              title="{{ 'Can live with cats' if dog.can_live_with_cats else 'Cannot live with cats' }}"
+              class="fas fa-cat icon {% if dog.canLiveWithCats  == 'Yes' %}green-icon{% else %}red-icon{% endif %}"
+              title="{{ 'Can live with cats' if dog.canLiveWithCats  == 'Yes' else 'Cannot live with cats' }}"
             ></i>
             <i
-              class="fas fa-child icon"
-              title="{{ 'Can live with children' if dog.can_live_with_children else 'Cannot live with children' }}"
+              class="fas fa-child icon {% if dog.canLiveWithChildren  == 'Yes' %}green-icon{% else %}red-icon{% endif %}"
+              title="{{ 'Can live with children' if dog.canLiveWithChildren  == 'Yes' else 'Cannot live with children' }}"
             ></i>
             <i
-              class="fas fa-user icon"
-              title="{{ 'Can be left alone' if dog.can_be_left_alone else 'Cannot be left alone' }}"
+              class="fas fa-user icon {% if dog.canBeLeftAlone  == 'Yes' %}green-icon{% else %}red-icon{% endif %}"
+              title="{{ 'Can be left alone' if dog.canBeLeftAlone  == 'Yes' else 'Cannot be left alone' }}"
             ></i>
           </div>
         </div>
