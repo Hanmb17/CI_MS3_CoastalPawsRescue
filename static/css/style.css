@@ -477,6 +477,23 @@ input[type=number]:not(.browser-default):focus:not([readonly])+label {
 }
 
 
+.adoption-header {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    padding: 15px;
+}
+
+.adoption-header h1 {
+    margin-left: 20px; 
+}
+
+
+.dog-image {
+    max-height: 150px;
+    aspect-ratio: 1;
+    object-fit: cover; 
+    border-radius: 50%; 
 
 
 /* Media query */
@@ -508,7 +525,7 @@ input[type=number]:not(.browser-default):focus:not([readonly])+label {
     flex-direction: row;
 }
   
-  .col {
+  .dog-card {
     display: flex;
     flex-direction: column;
     margin: auto;

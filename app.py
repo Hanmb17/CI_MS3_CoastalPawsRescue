@@ -252,10 +252,10 @@ def logout():
     return redirect(url_for("home"))
 
 
-@app.route("/adoption_form")
-def adoption_form():
-    return render_template("adoption_form.html")
-
+@app.route("/adoption_form/<dog_id>")
+def adoption_form(dog_id):
+    dog = mongo.db.dogs.find_one({'_id': ObjectId(dog_id)})
+    return render_template("adoption_form.html", dog=dog)
 
 @app.route("/add_dog", methods=['POST', 'GET'])
 def add_dog():

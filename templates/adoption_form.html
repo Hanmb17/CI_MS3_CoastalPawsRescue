@@ -1,8 +1,10 @@
 {% extends "base.html" %} {% block content %}
 
 <div class="container">
-    <h1 class="center-align">Dog Adoption Form</h1>
-
+    <div class="adoption-header">
+        <img class="dog-image" src="{{ dog.imageURL }}" alt="{{ dog.name }}'s Image">
+        <h1>{{ dog.name }}'s Adoption Form</h1>
+    </div>
     <div class="row">
         <div class="col s12">
             <div class="card adoption_form">
