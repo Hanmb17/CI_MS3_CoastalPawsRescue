@@ -164,6 +164,11 @@ def filter_dogs():
 
         return render_template("dogs.html", dogs=dogs)
 
+@app.route('/dogs/<dog_id>')
+def dog_details(dog_id):
+    # Retrieve dog data from your database or any data source
+    dog = mongo.db.dogs.find_one({'_id': ObjectId(dog_id)})
+    return render_template('dog_details.html', dog=dog)
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():

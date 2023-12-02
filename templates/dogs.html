@@ -155,7 +155,7 @@
           </div>
         </div>
         <div class="card-action center">
-          <a href="#" class="waves-effect btn-large cta-button"
+          <a href="{{ url_for('dog_details', dog_id=dog._id) }}" class="waves-effect btn-large cta-button"
             >Meet {{ dog.name }}
             <span class="icon"><i class="fas fa-paw"></i></span
           ></a>
