@@ -48,7 +48,8 @@
 
 
             <!-- Adoption Buttons -->
-            {% if userLoggedIn %}
+            {% if session.user %}
+            <p>Fill in the adoption form here.</p>
                 <a href="#" class="waves-effect btn-large cta-button">Adopt Me</a>
             {% else %}
                 <p>Join or log in to start the adoption process.</p>
