@@ -58,6 +58,65 @@ $(document).ready(function () {
         handleClassOnResize(); 
     });
 
+    var otherDogsYes = $("#otherDogsYes");
+        var otherDogsNo = $("#otherDogsNo");
+        var otherCatsYes = $("#otherCatsYes");
+        var otherCatsNo = $("#otherCatsNo");
+        var otherPetsYes = $("#otherPetsYes");
+        var otherPetsNo = $("#otherPetsNo");
+        var childrenYes = $("#childrenYes");
+        var childrenNo = $("#childrenNo");
+
+        var otherDogsDetails = $("#other_dogs_details");
+        var otherCatsDetails = $("#other_cats_details");
+        var otherPetsDetails = $("#other_pets_details");
+        var childrenDetails = $("#children_details");
+
+        
+        toggleDetailsInput(otherDogsYes, otherDogsDetails);
+        toggleDetailsInput(otherCatsYes, otherCatsDetails);
+        toggleDetailsInput(otherPetsYes, otherPetsDetails);
+        toggleDetailsInput(childrenYes, childrenDetails);
+
+        // Attach event listeners to "Yes" and "No" radio buttons
+        otherDogsYes.change(function () {
+            toggleDetailsInput(otherDogsYes, otherDogsDetails);
+        });
+        otherDogsNo.change(function () {
+            toggleDetailsInput(otherDogsYes, otherDogsDetails);
+        });
+
+        otherCatsYes.change(function () {
+            toggleDetailsInput(otherCatsYes, otherCatsDetails);
+        });
+        otherCatsNo.change(function () {
+            toggleDetailsInput(otherCatsYes, otherCatsDetails);
+        });
+
+        otherPetsYes.change(function () {
+            toggleDetailsInput(otherPetsYes, otherPetsDetails);
+        });
+        otherPetsNo.change(function () {
+            toggleDetailsInput(otherPetsYes, otherPetsDetails);
+        });
+
+        childrenYes.change(function () {
+            toggleDetailsInput(childrenYes, childrenDetails);
+        });
+        childrenNo.change(function () {
+            toggleDetailsInput(childrenYes, childrenDetails);
+        });
+
+        function toggleDetailsInput(option, detailsInput) {
+            if (option.is(":checked")) {
+                detailsInput.removeClass("hide");
+                detailsInput.prop("required", true); 
+            } else {
+                detailsInput.addClass("hide");
+                detailsInput.prop("required", false); 
+            }
+        }
+
 
 });
 

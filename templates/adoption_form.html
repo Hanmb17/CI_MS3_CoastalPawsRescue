@@ -62,15 +62,10 @@
                         </div>
 
                         <!-- Dog Preferences -->
-                        <h2 class="card-title"><span>Preferences and Experience</span></h2>
-                        <div class="input-field">
-                            <label  for="interested_dog">Which dog are you interested in adopting?</label>
-                            <input  type="text" id="interested_dog" name="interested_dog" required>
-                            
-                        </div>
+                        <h2 class="card-title"><span>Why and Experience</span></h2>
 
                         <div class="input-field">
-                            <label  for="interested_dog">Why can you provide the best home for this dog?</label>
+                            <label  for="interested_dog">Why can you provide the best home for {{ dog.name }}?</label>
                             <textarea  id="interested_dog" name="interested_dog" class="materialize-textarea white-text" required></textarea>
                             
                         </div>
@@ -94,42 +89,42 @@
                             <label class="radio-label">Do you own other dogs? If yes, please provide details.</label>
                             <p>
                                 <label>
-                                    <input name="other_dogs_option" type="radio" value="yes" checked required/>
+                                    <input id="otherDogsYes" name="other_dogs_option" type="radio" value="yes" checked required/>
                                     <span>Yes</span>
                                 </label>
                             </p>
                             <p>
                                 <label>
-                                    <input  name="other_dogs_option" type="radio" value="no" required />
+                                    <input id="otherDogsNo" name="other_dogs_option" type="radio" value="no" required />
                                     <span>No</span>
                                 </label>
                             </p>
                         </div>
 
-                        <div class="input-field">
-                            <label  for="other_dogs">Details of other dogs</label>
-                            <input  type="text" id="other_dogs" name="other_dogs" required>
+                        <div class="input-field" id="other_dogs_details">
+                            <label for="other_dogs">Details of other dogs</label>
+                            <input type="text" id="other_dogs" name="other_dogs" required>
                         </div>
 
                         <div class="input-field">
                             <label class="radio-label" >Do you own other cats? If yes, please provide details.</label>
                             <p>
                                 <label>
-                                    <input name="other_cats_option" type="radio" value="yes" checked required/>
+                                    <input id="otherCatsYes"name="other_cats_option" type="radio" value="yes" checked required/>
                                     <span>Yes</span>
                                 </label>
                             </p>
                             <p>
                                 <label>
-                                    <input name="other_cats_option" type="radio" value="no" required/>
+                                    <input id="otherCatsNo"name="other_cats_option" type="radio" value="no" required/>
                                     <span>No</span>
                                 </label>
                             </p>
                         </div>
 
 
-                        <div class="input-field">
-                            <label for="other_cats">Details of other cats.</label>
+                        <div class="input-field" id="other_cats_details">
+                            <label for="other_cats">Details of other cats</label>
                             <input type="text" id="other_cats" name="other_cats" required>
                         </div>
 
@@ -137,13 +132,13 @@
                             <label class="radio-label">Do you own other pets? If yes, please provide details.</label>
                             <p>
                                 <label>
-                                    <input name="other_pets_option" type="radio" value="yes" checked required />
+                                    <input id="otherPetsYes" name="other_pets_option" type="radio" value="yes" checked required />
                                     <span>Yes</span>
                                 </label>
                             </p>
                             <p>
                                 <label>
-                                    <input name="other_pets_option" type="radio" value="no" required />
+                                    <input  id="otherPetsNo" name="other_pets_option" type="radio" value="no" required />
                                     <span>No</span>
                                 </label>
                             </p>
@@ -152,29 +147,28 @@
                         <div class="input-field" id="other_pets_details">
                             <label for="other_pets">Details of other pets</label>
                             <input type="text" id="other_pets" name="other_pets" required>
-                            
                         </div>
 
                         <div class="input-field">
                             <label class="radio-label" for="children">Do you have children in your household?*</label>
                             <p>
                                 <label>
-                                    <input name="children" type="radio" value="yes" required checked />
+                                    <input id="childrenYes" name="children" type="radio" value="yes" required checked />
                                     <span>Yes</span>
                                 </label>
                             </p>
                             <p>
                                 <label>
-                                    <input name="children" type="radio" value="no" required />
+                                    <input id="childrenNo" name="children" type="radio" value="no" required />
                                     <span>No</span>
                                 </label>
                             </p>
                             
                         </div>
 
-                        <div class="input-field" id="other_pets_details">
-                            <label for="other_pets">What are the childrens age?</label>
-                            <input type="text" id="other_pets" name="other_pets" required>
+                        <div class="input-field" id="children_details">
+                            <label for="children">What are the children's age?</label>
+                            <input type="text" id="children" name="children" required>
                         </div>
 
                         <!-- Lifestyle and Commitment -->
@@ -182,12 +176,14 @@
                         <div class="input-field">
                             <label for="work_hours">How many hours per day will the dog be left alone?</label>
                             <input type="number" id="work_hours" name="work_hours" required>
+                            <span class="helper-text white-text" data-error="Please enter a valid number of hours">For example: 4</span>
                             
                         </div>
 
                         <div class="input-field">
                             <label for="exercise_hours">How many hours of exercise can you provide daily?</label>
                             <input type="number" id="exercise_hours" name="exercise_hours" required>
+                            <span class="helper-text white-text" data-error="Please enter a valid number of hours">For example: 2</span>
                             
                         </div>
 
