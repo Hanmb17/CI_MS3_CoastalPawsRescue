@@ -108,12 +108,14 @@ $(document).ready(function () {
         });
 
         function toggleDetailsInput(option, detailsInput) {
+            var input = detailsInput.find('input[type="text"]');
+
             if (option.is(":checked")) {
                 detailsInput.removeClass("hide");
-                detailsInput.prop("required", true); 
+                input.prop("required", true); 
             } else {
                 detailsInput.addClass("hide");
-                detailsInput.prop("required", false); 
+                input.prop("required", false); 
             }
         }
 
