@@ -251,11 +251,46 @@ def logout():
     flash("You have been logged out.")
     return redirect(url_for("home"))
 
-
-@app.route("/adoption_form/<dog_id>")
+@app.route("/adoption_form/<dog_id>", methods=["GET", "POST"])
 def adoption_form(dog_id):
+    if request.method == 'POST':
+        username = session.get('user')
+        user = mongo.db.users.find_one({'username': username})
+
+        if user:
+            user_id = user['_id']
+
+            existing_form = mongo.db.adoptionRequests.find_one({'user_id': ObjectId(user_id), 'dog_id': ObjectId(dog_id)})
+
+            if existing_form:
+                flash("Error: You already have filled in this form for this dog!")
+            else:
+                adoption_info = {
+                    'user_id': user_id,
+                    'dog_id': ObjectId(dog_id),
+                    'experience': request.form.get('experience'),
+                    'reason': request.form.get('reason'),
+                    'other_dogs_option': request.form.get('other_dogs_option'),
+                    'other_dogs_details': request.form.get('other_dogs_details') if request.form.get('other_dogs_option') == 'yes' else None,
+                    'other_cats_option': request.form.get('other_cats_option'),
+                    'other_cats_details': request.form.get('other_cats_details') if request.form.get('other_cats_option') == 'yes' else None,
+                    'other_pets_option': request.form.get('other_pets_option'),
+                    'other_pets_details': request.form.get('other_pets_details') if request.form.get('other_pets_option') == 'yes' else None,
+                    'children': request.form.get('children'),
+                    'children_details': request.form.get('children_details') if request.form.get('children') == 'yes' else None,
+                    'work_hours': request.form.get('work_hours'),
+                    'exercise_hours': request.form.get('exercise_hours')
+                }
+
+                # Insert the adoption form data into the MongoDB collection
+                adoption_request = mongo.db.adoptionRequests.insert_one(adoption_info)
+                flash("Thank you, we have your form")
+
     dog = mongo.db.dogs.find_one({'_id': ObjectId(dog_id)})
+
     return render_template("adoption_form.html", dog=dog)
+
+
 
 @app.route("/add_dog", methods=['POST', 'GET'])
 def add_dog():

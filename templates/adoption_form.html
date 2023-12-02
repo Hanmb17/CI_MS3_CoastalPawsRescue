@@ -9,7 +9,7 @@
         <div class="col s12">
             <div class="card adoption_form">
                 <div class="card-content">
-                    <form action="/submit_adoption" method="post">
+                    <form action="{{ url_for('adoption_form', dog_id=dog._id) }}" method="post">
 
                         <!-- Personal Information -->
                         <h2 class="card-title"><span>About You</span></h2>
