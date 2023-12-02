@@ -68,6 +68,49 @@ def get_dogs():
     
     return render_template("dogs.html", dogs=dogs)
 
+@app.route("/filter_dogs", methods=["GET", "POST"])
+def filter_dogs():
+    print('filter running')
+    if request.method == "POST":
+        breed_or_name = request.form.get("breed_or_name")
+        child_friendly = request.form.get("child_friendly")
+        cat_friendly = request.form.get("cat_friendly")
+        dog_friendly = request.form.get("dog_friendly")
+
+        query = {}
+
+        if breed_or_name:
+            query["$or"] = [
+                {"name": {"$regex": breed_or_name, "$options": "i"}},
+                {"breed": {"$regex": breed_or_name, "$options": "i"}},
+            ]
+
+        if child_friendly == "on":
+            query["canLiveWithChildren"] = "Yes"
+        else:
+            query["canLiveWithChildren"] = "No"
+
+        if cat_friendly == "on":
+            query["canLiveWithCats"] = "Yes"
+        else:
+            query["canLiveWithCats"] = "No"
+
+        if dog_friendly == "on":
+            query["canLiveWithDogs"] = "Yes"
+        else:
+            query["canLiveWithDogs"] = "No"
+
+        print(query)
+
+        dogs = list(mongo.db.dogs.find(query))
+
+        # Calculate age for each dog
+        for dog in dogs:
+            dob = dog.get('dateOfBirth')
+            dog['age'] = calculate_dog_age(dob)
+
+        return render_template("dogs.html", dogs=dogs)
+
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():

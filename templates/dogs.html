@@ -2,11 +2,12 @@
 <h1 class="center">Dogs For Adoption</h1>
 <!--Filter section for searching the dogs table-->
 <div class="container">
+<form action="{{ url_for('filter_dogs') }}" method="post">
   <ul class="collapsible">
     <li>
       <div class="collapsible-header">
         Filter Options
-        <button class="waves-effect  btn-large cta-button">
+        <button type="submit" class="waves-effect  btn-large cta-button">
           Apply
         </button>
       </div>
@@ -18,6 +19,7 @@
               type="text"
               id="autocomplete-input"
               class="autocomplete input-field"
+              name="breed_or_name"
             />
           </div>
           <div class="col m6 s12">
@@ -41,10 +43,10 @@
               <label for="childFriendly">Can Live with Children:</label>
               <div class="switch-toggle middle-align-input">
                 <label>
-                  Off
-                  <input type="checkbox" />
+                  No
+                  <input type="checkbox" name="child_friendly" />
                   <span class="lever"></span>
-                  On
+                  Yes
                 </label>
               </div>
             </div>
@@ -54,10 +56,10 @@
               <label for="catFriendly">Can Live with Cats:</label>
               <div class="switch-toggle middle-align-input">
                 <label>
-                  Off
-                  <input type="checkbox" />
+                  No
+                  <input type="checkbox" name="cat_friendly"/>
                   <span class="lever"></span>
-                  On
+                  Yes
                 </label>
               </div>
             </div>
@@ -67,10 +69,10 @@
               <label for="dogFriendly">Can Live with Dogs:</label>
               <div class="switch-toggle middle-align-input">
                 <label>
-                  Off
-                  <input type="checkbox" />
+                  No
+                  <input type="checkbox" name="dog_friendly" />
                   <span class="lever"></span>
-                  On
+                  Yes
                 </label>
               </div>
             </div>
@@ -79,6 +81,7 @@
       </div>
     </li>
   </ul>
+</form>
 </div>
 
 <!-- HTML structure for the Materialize card -->
