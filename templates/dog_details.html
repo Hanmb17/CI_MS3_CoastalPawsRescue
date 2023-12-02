@@ -1,5 +1,62 @@
 {% extends "base.html" %} {% block content %}
 
-Dog details go here{{dog.name}}
+<div class="container">
+    <!-- Hero section -->
+    <h1 class="center meet-header">Meet {{ dog.name }}</h1>
+
+    <!-- Dog Details -->
+    <div class="row valign-wrapper">
+        <div class="col s12 m6">
+            <!-- Dog Image -->
+            <img class="responsive-img" src="{{ dog.imageURL }}" alt="{{ dog.name }}'s Image">
+        </div>
+        <div class="col s12 m6">
+            <!-- Basic Info -->
+            <p><strong>Gender:</strong> {{ dog.gender }}</p>
+            <p><strong>Age:</strong> {{ dog.age }}</p>
+            <p><strong>Breed:</strong> {{ dog.breed }}</p>
+            <p><strong>Size:</strong> {{ dog.size }}</p>
+            <p><strong>Daily Exercise:</strong> {{ dog.dailyExerciseRequired }}</p>
+        </div>
+        </div>
+        <div class="row">
+            <!-- Description -->
+            <p><strong>Description:</strong> {{ dog.description }}</p>
+
+            <!-- Additional Info Table -->
+            <table>
+                <tbody>
+                <tr>
+                    <td>Can Live With Dogs?</td>
+                    <td>{{ dog.canLiveWithDogs }}</td>
+                </tr>
+                <tr>
+                    <td>Can Live With Cats?</td>
+                    <td>{{ dog.canLiveWithCats }}</td>
+                </tr>
+                <tr>
+                    <td>Can Live With Children?</td>
+                    <td>{{ dog.canLiveWithChildren }}</td>
+                </tr>
+                <tr>
+                    <td>Can Be Left Alone?</td>
+                    <td>{{ dog.canBeLeftAlone }}</td>
+                </tr>
+               
+                </tbody>
+            </table>
+
+
+            <!-- Adoption Buttons -->
+            {% if userLoggedIn %}
+                <a href="#" class="waves-effect btn-large cta-button">Adopt Me</a>
+            {% else %}
+                <p>Join or log in to start the adoption process.</p>
+                <a href="{{ url_for('get_login_signup') }}" class="waves-effect btn-large cta-button">Log In / Sign Up</a>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
 
 {% endblock %}

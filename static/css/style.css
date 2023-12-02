@@ -32,6 +32,10 @@ input{
   color: var(--text-color);
 }
 
+strong{
+    font-weight: bolder;
+}
+
 header, footer {
     z-index: 1000;
 }
