@@ -2,88 +2,104 @@
 <h1 class="center">Dogs For Adoption</h1>
 <!--Filter section for searching the dogs table-->
 <div class="container">
-<form action="{{ url_for('filter_dogs') }}" method="post">
-  <ul class="collapsible">
-    <li>
-      <div class="collapsible-header">
-        Filter Options
-        <button type="submit" class="waves-effect  btn-large cta-button">
-          Apply
-        </button>
-      </div>
-      <div class="collapsible-body filter-content">
-        <div class="row margin-0 equal-height-row">
-          <div class="col m6 s12">
-            <label for="autocomplete-input">Search by breed or name</label>
-            <input
-              type="text"
-              id="autocomplete-input"
-              class="autocomplete input-field"
-              name="breed_or_name"
-            />
-          </div>
-          <div class="col m6 s12">
-            <input type="hidden" id="minAge" name="min_age" value="0">
-            <input type="hidden" id="maxAge" name="max_age" value="10">
-            <div class="column-content-wrapper">
-              <label for="ageRange">Age Range:</label>
-              <div class="middle-align-input age-range">
-                <div class="age-range-labels">
-                  <span class="start-label">0</span>
-                  <span class="end-label">10+</span>
-                </div>
-                <div>
-                  <div class="age-slider" id="ageSlider"></div>
-                </div>
-              </div>
-            </div>
+  <form action="{{ url_for('filter_dogs') }}" method="post">
+    <ul class="collapsible">
+      <li>
+        <div class="collapsible-header">
+          Filter Options
+          <div>
+            <a
+              href="{{ url_for('get_dogs')}}"
+              class="waves-effect btn-large clear-button"
+              type="reset"
+              id="resetFilter"
+            >
+              Clear Filters
+            </a>
           </div>
         </div>
-        <div class="row margin-0 equal-height-row">
-          <div class="col m4 s12 switch">
-            <div class="column-content-wrapper">
-              <label for="childFriendly">Can Live with Children:</label>
-              <div class="switch-toggle middle-align-input">
-                <label>
-                  No
-                  <input type="checkbox" name="child_friendly" />
-                  <span class="lever"></span>
-                  Yes
-                </label>
+        <div class="collapsible-body filter-content">
+          <div class="row margin-0 equal-height-row">
+            <div class="col m6 s12">
+              <label for="autocomplete-input">Search by breed or name</label>
+              <input
+                type="text"
+                id="autocomplete-input"
+                class="autocomplete input-field"
+                name="breed_or_name"
+              />
+            </div>
+            <div class="col m6 s12">
+              <input type="hidden" id="minAge" name="min_age" value="0" />
+              <input type="hidden" id="maxAge" name="max_age" value="10" />
+              <div class="column-content-wrapper">
+                <label for="ageRange">Age Range:</label>
+                <div class="middle-align-input age-range">
+                  <div class="age-range-labels">
+                    <span class="start-label">0</span>
+                    <span class="end-label">10+</span>
+                  </div>
+                  <div>
+                    <div class="age-slider" id="ageSlider"></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col m4 s12 switch">
-            <div class="column-content-wrapper">
-              <label for="catFriendly">Can Live with Cats:</label>
-              <div class="switch-toggle middle-align-input">
-                <label>
-                  No
-                  <input type="checkbox" name="cat_friendly"/>
-                  <span class="lever"></span>
-                  Yes
-                </label>
+          <div class="row margin-0 equal-height-row">
+            <div class="col m4 s12 switch">
+              <div class="column-content-wrapper">
+                <label for="childFriendly">Can Live with Children:</label>
+                <div class="switch-toggle middle-align-input">
+                  <label>
+                    No
+                    <input type="checkbox" name="child_friendly" />
+                    <span class="lever"></span>
+                    Yes
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="col m4 s12 switch">
+              <div class="column-content-wrapper">
+                <label for="catFriendly">Can Live with Cats:</label>
+                <div class="switch-toggle middle-align-input">
+                  <label>
+                    No
+                    <input type="checkbox" name="cat_friendly" />
+                    <span class="lever"></span>
+                    Yes
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="col m4 s12 switch">
+              <div class="column-content-wrapper">
+                <label for="dogFriendly">Can Live with Dogs:</label>
+                <div class="switch-toggle middle-align-input">
+                  <label>
+                    No
+                    <input type="checkbox" name="dog_friendly" />
+                    <span class="lever"></span>
+                    Yes
+                  </label>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col m4 s12 switch">
-            <div class="column-content-wrapper">
-              <label for="dogFriendly">Can Live with Dogs:</label>
-              <div class="switch-toggle middle-align-input">
-                <label>
-                  No
-                  <input type="checkbox" name="dog_friendly" />
-                  <span class="lever"></span>
-                  Yes
-                </label>
-              </div>
-            </div>
+          <div>
+            <button
+              type="submit"
+              class="waves-effect btn-large cta-button"
+              id="applyFilterButton"
+            >
+              Apply
+            </button>
           </div>
         </div>
-      </div>
-    </li>
-  </ul>
-</form>
+      </li>
+    </ul>
+  </form>
 </div>
 
 <!-- HTML structure for the Materialize card -->
@@ -93,7 +109,11 @@
     <div class="col s12 m6 l4">
       <div class="card">
         <div class="card-image">
-          <img class="responsive-img" src="{{ dog.imageURL }}" alt="{{ dog.name }}'s Image" />
+          <img
+            class="responsive-img"
+            src="{{ dog.imageURL }}"
+            alt="{{ dog.name }}'s Image"
+          />
           <span class="card-banner">
             {% if dog.status == "new" %} New {% elif dog.status == "rehomed" %}
             Rehomed {% elif dog.status == "under_application" %} Under
@@ -104,13 +124,13 @@
           <span class="card-title center">
             <span class="dog-name">{{ dog.name }} </span>
             <span class="gender-icon">
-                {% if dog.gender == "Male" %}
-                <i class="fa-solid fa-mars" title="Male"></i>
-            {% elif dog.gender == "Female" %}
-                <i class="fa-solid fa-venus" title="Female"></i>
-            {% else %}
-                <!-- No icon shown if unknown gender -->
-            {% endif %}
+              {% if dog.gender == "Male" %}
+              <i class="fa-solid fa-mars" title="Male"></i>
+              {% elif dog.gender == "Female" %}
+              <i class="fa-solid fa-venus" title="Female"></i>
+              {% else %}
+              <!-- No icon shown if unknown gender -->
+              {% endif %}
             </span>
           </span>
           <p><strong>Age:</strong> {{ dog.age }}</p>
@@ -121,21 +141,21 @@
               title="{{ 'Can live with other dogs' if dog.canLiveWithDogs  == 'Yes' else 'Cannot live with other dogs' }}"
             ></i>
             <i
-              class="fas fa-cat icon {% if dog.canLiveWithCats  == 'Yes' %}green-icon{% else %}red-icon{% endif %}"
+              class="fas fa-cat icon {% if dog.canLiveWithCats == 'Yes' %}green-icon{% else %}red-icon{% endif %}"
               title="{{ 'Can live with cats' if dog.canLiveWithCats  == 'Yes' else 'Cannot live with cats' }}"
             ></i>
             <i
-              class="fas fa-child icon {% if dog.canLiveWithChildren  == 'Yes' %}green-icon{% else %}red-icon{% endif %}"
+              class="fas fa-child icon {% if dog.canLiveWithChildren == 'Yes' %}green-icon{% else %}red-icon{% endif %}"
               title="{{ 'Can live with children' if dog.canLiveWithChildren  == 'Yes' else 'Cannot live with children' }}"
             ></i>
             <i
-              class="fas fa-user icon {% if dog.canBeLeftAlone  == 'Yes' %}green-icon{% else %}red-icon{% endif %}"
+              class="fas fa-user icon {% if dog.canBeLeftAlone == 'Yes' %}green-icon{% else %}red-icon{% endif %}"
               title="{{ 'Can be left alone' if dog.canBeLeftAlone  == 'Yes' else 'Cannot be left alone' }}"
             ></i>
           </div>
         </div>
         <div class="card-action center">
-          <a href="#" class="waves-effect  btn-large cta-button"
+          <a href="#" class="waves-effect btn-large cta-button"
             >Meet {{ dog.name }}
             <span class="icon"><i class="fas fa-paw"></i></span
           ></a>
