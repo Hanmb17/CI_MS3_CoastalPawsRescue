@@ -76,6 +76,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
        decimals: 0
      })
     });
+
+     // Update min and max values when the slider changes
+    slider.noUiSlider.on("update", function(values, handle) {
+        document.getElementById("minAge").value = values[0];
+        document.getElementById("maxAge").value = values[1];
+      });
   });
 
   document.addEventListener('DOMContentLoaded', function() {

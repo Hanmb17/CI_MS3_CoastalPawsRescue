@@ -6,7 +6,7 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 
 if os.path.exists("env.py"):
     import env
@@ -19,9 +19,23 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
+# Utility function to work out birthdates
+def calculate_date_from_age(age):
+    """
+    Calculate the birthdate of a dog based on an age.
+
+    Arguments:
+        age (int): The age of dog in years.
+
+    Returns:
+        datetime: The calculated birthdate as a datetime object.
+    """
+    current_date = datetime.now()
+    birthdate = current_date - timedelta(days=365.25 * age)
+    birthdate = birthdate.replace(hour=0, minute=0, second=0, microsecond=0)
+    return birthdate
+
 # Utility function to calculate dog's age
-
-
 def calculate_dog_age(dob):
     """
     Calculate the age of a dog based on its date of birth.
@@ -60,13 +74,14 @@ def home():
 @app.route("/get_dogs")
 def get_dogs():
     dogs = list(mongo.db.dogs.find())
-    
+
     # Calculate age for each dog
     for dog in dogs:
         dob = dog.get('dateOfBirth')
         dog['age'] = calculate_dog_age(dob)
-    
+
     return render_template("dogs.html", dogs=dogs)
+
 
 @app.route("/filter_dogs", methods=["GET", "POST"])
 def filter_dogs():
@@ -76,6 +91,11 @@ def filter_dogs():
         child_friendly = request.form.get("child_friendly")
         cat_friendly = request.form.get("cat_friendly")
         dog_friendly = request.form.get("dog_friendly")
+        min_age = int(request.form.get("min_age", 0))
+        max_age = int(request.form.get("max_age", 10))
+
+        print("max age:", max_age)
+        print("min age:", min_age)
 
         query = {}
 
@@ -100,9 +120,42 @@ def filter_dogs():
         else:
             query["canLiveWithDogs"] = "No"
 
+        if min_age != 0 and max_age != 10:
+            min_age = int(min_age)
+            max_age = int(max_age)
+
+            min_birthdate = calculate_date_from_age(min_age)
+            max_birthdate = calculate_date_from_age(max_age)
+
+            print(max_birthdate)
+            print(min_birthdate)
+
+            query["dateOfBirth"] = {
+                "$gte": max_birthdate,
+                "$lte": min_birthdate
+            }
+
+        elif min_age != "0":
+            # Only min_age is set
+            min_age = int(min_age)
+            min_birthdate = calculate_date_from_age(min_age)
+
+            query["dateOfBirth"] = {
+                "$lte": min_birthdate
+            }
+        elif max_age != "10":
+            # Only max_age is set
+            max_age = int(max_age)
+            max_birthdate = calculate_date_from_age(max_age)
+
+            query["dateOfBirth"] = {
+                "$gte": max_birthdate
+            }
+
         print(query)
 
         dogs = list(mongo.db.dogs.find(query))
+        print(dogs)
 
         # Calculate age for each dog
         for dog in dogs:
@@ -295,7 +348,8 @@ def edit_dog(dog_id):
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
-    dogs = list(mongo.db.dogs.find({"name": {"$regex": query, "$options": "i"}}))
+    dogs = list(mongo.db.dogs.find(
+        {"name": {"$regex": query, "$options": "i"}}))
     # Calculate age for each dog based on date of birth
     for dog in dogs:
         dob = dog.get('dateOfBirth')
@@ -305,13 +359,13 @@ def search():
     return render_template("admin_profile.html", dogs=dogs, display_results=display_results)
 
 
-
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     # grab the session user's username from db
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
     return render_template("profile.html", username=username)
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"), port=int(
