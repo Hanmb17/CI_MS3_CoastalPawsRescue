@@ -2,7 +2,60 @@
 {% block content %}
 
 <div class="container">
-    <h1>Your Adoption Applications</h1>
+    <h1>Your Adoption Application For </h1>
+
+    <div class="card">
+        <div class="card-content">
+            <p>Status: {{ adoption_request.status }}<span class=""></span></p>
+    
+            <!-- Display user's form details -->
+            <h5>Your Details</h5>
+            <p><strong>First Name:</strong> {{ adoption_request.firstName }}</p>
+            <p><strong>Last Name:</strong> {{ adoption_request.lastName }}</p>
+            <p><strong>Phone Number:</strong> {{ adoption_request.phone }}</p>
+            <p><strong>Email:</strong> {{ adoption_request.email }}</p>
+            <p><strong>Address:</strong> {{ adoption_request.addressLine }},
+                {% if adoption_request.city %}{{ adoption_request.city }}, {% endif %}
+                {% if adoption_request.county %}{{ adoption_request.county }}, {% endif %}
+               {{ adoption_request.postCode }}</p>
+    
+            <!-- Display other sections of the form -->
+            <h5>Supporting Information</h5>
+            <p class="white-text">{{ adoption_request.experience }}</p>
+            <p>{{ adoption_request.reason }}</p>
+            <p class="white-text">{{ adoption_request.experience }}</p>
+            <p>{{ adoption_request.reason }}</p>
+            <p class="white-text">{{ adoption_request.experience }}</p>
+            <p>{{ adoption_request.reason }}</p>
+    
+    
+            <!-- Other Pets and Family -->
+            <h5>Household Information</h5>
+            <p><strong>Own Other Dogs:</strong> {{ adoption_request.otherDogsOption }}</p>
+            {% if adoption_request.otherDogsOption == 'yes' %}
+            <p><strong>Details:</strong> {{ adoption_request.otherDogsDetails }}</p>
+            {% endif %}
+            <p><strong>Own Other Cats:</strong> {{ adoption_request.otherCatsOption }}</p>
+            {% if adoption_request.otherCatsOption == 'yes' %}
+            <p><strong>Details:</strong> {{ adoption_request.otherCatsDetails }}</p>
+            {% endif %}
+            <p><strong>Own Other Pets:</strong> {{ adoption_request.otherPetsOption }}</p>
+            {% if adoption_request.otherPetsOption == 'yes' %}
+            <p><strong>Details:</strong> {{ adoption_request.otherPetsDetails }}</p>
+            {% endif %}
+            <p><strong>Children:</strong> {{ adoption_request.children }}</p>
+            {% if adoption_request.children == 'yes' %}
+            <p><strong>Details:</strong> {{ adoption_request.childrenDetails }}</p>
+            {% endif %}
+        
+    
+            <!-- Lifestyle and Commitment -->
+            <h5>Lifestyle and Commitment</h5>
+            <p><strong>Left Alone Hours:</strong> {{ adoption_request.leftAloneHours }} /p>
+            <p><strong>Exercise Hours:</strong> {{ adoption_request.exerciseHours }}</p>
+        </div>
+    </div>
+</div>
 
 
 {% endblock %}
