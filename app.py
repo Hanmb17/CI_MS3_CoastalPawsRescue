@@ -49,7 +49,8 @@ def calculate_dog_age(dob):
         dob (datetime.date or None): The date of birth of the dog.
 
     Returns:
-        string: The age of the dog in years and months or "Unknown" if the date of birth is not provided.
+        string: The age of the dog in years and months or "Unknown"
+        if the date of birth is not provided.
     """
     if dob is None:
         return "Unknown"
@@ -272,7 +273,9 @@ def adoption_form(dog_id):
                 {'user_id': ObjectId(user_id), 'dog_id': ObjectId(dog_id)})
 
             if existing_form:
-                flash("Error: You already have filled in this form for this dog!")
+                flash(
+                    "Error:"
+                    " You already have filled in this form for this dog!")
             else:
                 adoption_info = {
                     'user_id': user_id,
@@ -313,6 +316,11 @@ def adoption_form(dog_id):
     return render_template("adoption_form.html", dog=dog)
 
 
+@app.route("/adoption_requests")
+def adoption_requests():
+    return render_template("adoption_requests.html")
+
+
 @app.route("/adoption_request/<request_id>", methods=["GET", "POST"])
 def adoption_request_details(request_id):
     adoption_request = (mongo.db.adoptionRequests.find_one(
@@ -321,8 +329,8 @@ def adoption_request_details(request_id):
     dog_id = adoption_request.get('dog_id')
     dog = mongo.db.dogs.find_one({'_id': ObjectId(dog_id)})
 
-
-    return render_template("adoption_request.html", adoption_request=adoption_request, dog=dog)
+    return render_template("adoption_request.html",
+                           adoption_request=adoption_request, dog=dog)
 
 
 @app.route("/add_dog", methods=['POST', 'GET'])
@@ -339,7 +347,8 @@ def add_dog():
 
         if existing_dog:
             flash(
-                "Error: Dog with the same name, breed, and date of birth already exists!")
+                "Error: Dog with the same name, "
+                "breed and date of birth already exists!")
 
         dog_info = {
             'name': request.form.get('name'),
@@ -364,11 +373,10 @@ def add_dog():
 
 @app.route("/admin_profile")
 def admin_profile():
-     # Count the number of submitted adoption requests
+    # Count the number of submitted adoption requests
     new_requests = mongo.db.adoptionRequests.count_documents({
         'status': 'Submitted'
     })
-
 
     return render_template("admin_profile.html", new_requests=new_requests)
 
@@ -405,8 +413,10 @@ def edit_dog(dog_id):
                     'canBeLeftAlone': request.form.get('left_alone'),
                     'canLiveWithDogs': request.form.get('live_with_dogs'),
                     'canLiveWithCats': request.form.get('live_with_cats'),
-                    'canLiveWithChildren': request.form.get('live_with_children'),
-                    'dailyExerciseRequired': request.form.get('exercise_required'),
+                    'canLiveWithChildren':
+                        request.form.get('live_with_children'),
+                    'dailyExerciseRequired':
+                        request.form.get('exercise_required'),
                     'imageURL': request.form.get('image_url')
                 }
             }
@@ -421,7 +431,8 @@ def edit_dog(dog_id):
 
         return redirect(request.url)  # Redirect to the current URL
 
-    return render_template("edit_dog.html", dog=dog, dog_age=dog_age, formatted_dob=formatted_dob)
+    return render_template("edit_dog.html", dog=dog,
+                           dog_age=dog_age, formatted_dob=formatted_dob)
 
 
 @app.route("/search", methods=["GET", "POST"])
@@ -435,7 +446,8 @@ def search():
         dog['age'] = calculate_dog_age(dob)
 
     display_results = True
-    return render_template("admin_profile.html", dogs=dogs, display_results=display_results)
+    return render_template("admin_profile.html", dogs=dogs,
+                           display_results=display_results)
 
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
@@ -459,7 +471,8 @@ def profile(username):
         dog_info = mongo.db.dogs.find_one({'_id': request['dog_id']})
         request['dog_info'] = dog_info
 
-    return render_template("profile.html", user=user, adoption_requests=adoption_requests)
+    return render_template("profile.html", user=user,
+                           adoption_requests=adoption_requests)
 
 
 @app.route('/random_dog')

@@ -1,0 +1,38 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div>
+    <h1>Adoption Requests</h1>
+    <!-- Navigation Tabs for Different Statuses -->
+    <ul class="nav nav-tabs" id="statusTabs">
+        <li class="nav-item">
+            <a class="nav-link active" id="submitted-tab" data-toggle="tab" href="#submitted">Submitted</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="approved-tab" data-toggle="tab" href="#approved">Approved</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="under-review-tab" data-toggle="tab" href="#under-review">Under Review</a>
+        </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content">
+        <!-- Submitted Adoption Requests -->
+        <div class="tab-pane fade show active" id="submitted">
+           
+        </div>
+
+        <!-- Approved Adoption Requests -->
+        <div class="tab-pane fade" id="approved">
+           
+        </div>
+
+        <!-- Under Review Adoption Requests -->
+        <div class="tab-pane fade" id="under-review">
+           
+        </div>
+    </div>
+</div>
+
+{% endblock %}
