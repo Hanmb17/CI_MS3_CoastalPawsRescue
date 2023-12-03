@@ -364,7 +364,13 @@ def add_dog():
 
 @app.route("/admin_profile")
 def admin_profile():
-    return render_template("admin_profile.html")
+     # Count the number of submitted adoption requests
+    new_requests = mongo.db.adoptionRequests.count_documents({
+        'status': 'Submitted'
+    })
+
+
+    return render_template("admin_profile.html", new_requests=new_requests)
 
 
 @app.route("/edit_dog/<dog_id>", methods=["POST", "GET"])

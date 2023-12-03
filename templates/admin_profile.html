@@ -44,7 +44,11 @@
                                     <img src="" alt="Apotion icon" class="responsive-img">
                                 </div>
                                 <div class="col s6">
-                                    <p>3 new adoption requests</p>
+                                    {% if new_requests == 0 %}
+                                    <p>There are no new adoption requests at the moment.</p>
+                                    {% else %}
+                                    <p>You have {{ new_requests }} new adoption form(s) to review</p>
+                                    {% endif %}
                                 </div>
                             </div>
                             <div class="card-action">
