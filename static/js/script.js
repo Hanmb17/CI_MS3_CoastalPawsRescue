@@ -11,6 +11,13 @@ $(document).ready(function () {
 
     $('.tabs').tabs();
 
+    $('#dropdown2').on('click', 'li', function(){
+        var target = $(this).find('a').attr('href');
+
+        // Activate the tab using Materialize function
+        M.Tabs.getInstance($('.tabs')).select(target.slice(1));
+    });
+
 
     $('.tooltipped').tooltip();
     $('.datepicker').datepicker({
