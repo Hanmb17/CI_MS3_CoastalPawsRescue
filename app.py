@@ -1,4 +1,5 @@
 import os
+import random
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for
@@ -421,7 +422,19 @@ def profile(username):
 
     return render_template("profile.html", user=user, adoption_requests=adoption_requests)
 
+@app.route('/random_dog')
+def random_dog():
+    all_dogs = list(mongo.db.dogs.find())
 
+    if not all_dogs:
+        flash("No dogs found.")
+        return redirect(url_for("home"))
+
+    random_dog = random.choice(all_dogs)
+
+    random_dog_id = str(random_dog['_id'])
+
+    return redirect(url_for('dog_details', dog_id=random_dog_id))
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"), port=int(

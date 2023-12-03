@@ -22,7 +22,7 @@
     <section id="welcome" class="section">
         <div class="row">
             <div class="col m6 l8 left-align">
-        <h4>Welcome, {{ username }}</h4>
+        <h4>Welcome, {{ user.username }}</h4>
         <p>Discover your new furry friend and make a difference in their lives.</p>
             </div>
             <div class="col m6 l4"  >
@@ -34,7 +34,7 @@
 
     <!-- Random Dog Generator Button -->
     <section class="section">
-        <button id="random-dog-btn" class="btn waves-effect waves-light">Generate Random Dog</button>
+        <a href="{{ url_for('random_dog') }}" class="waves-effect  btn-large cta-button">Surprise Me With A Pup</a>
         <!-- Display the generated dog information here -->
         <div id="random-dog-info"></div>
     </section>
