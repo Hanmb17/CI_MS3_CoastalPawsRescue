@@ -401,10 +401,26 @@ def search():
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
-    # grab the session user's username from db
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
-    return render_template("profile.html", username=username)
+    # Grab the user's information from the database
+    user = mongo.db.users.find_one({"username": session["user"]})
+
+    # Check if the user exists
+    if not user:
+        flash("User not found.")
+        return redirect(url_for("home"))
+
+    # Get the user's ID
+    user_id = user['_id']
+
+    # Query adoption requests for the user
+    adoption_requests = list(mongo.db.adoptionRequests.find({'user_id': ObjectId(user_id)}))
+
+    for request in adoption_requests:
+        dog_info = mongo.db.dogs.find_one({'_id': request['dog_id']})
+        request['dog_info'] = dog_info
+
+    return render_template("profile.html", user=user, adoption_requests=adoption_requests)
+
 
 
 if __name__ == "__main__":

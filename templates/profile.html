@@ -48,7 +48,24 @@
     <!-- Applications Section (Replace with your actual applications content) -->
     <section id="applications" class="section">
         <h5>Your Applications</h5>
-        <!-- Add your applications content here -->
+        <div class="row">
+        {% if adoption_requests %}
+        {% for adoption_requests in adoption_requests %}
+        <div class="col s12 m6 l4">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">{{ adoption_requests.dog_info.name }}</span>
+                <img class="dog-image" src="{{ adoption_requests.dog_info.imageURL }}" alt="{{ adoption_requests.dog_info.name }}'s Image">
+                    <p>Status: {{ adoption_requests._id }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No adoption requests made.</p>
+        <a href="#" class="btn">View Dogs Listing</a>
+    {% endif %}
+    </div>
     </section>
 
     <!-- Edit Profile Section (Replace with your actual edit profile content) -->
