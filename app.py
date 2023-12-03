@@ -21,6 +21,8 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 # Utility function to work out birthdates
+
+
 def calculate_date_from_age(age):
     """
     Calculate the birthdate of a dog based on an age.
@@ -37,6 +39,8 @@ def calculate_date_from_age(age):
     return birthdate
 
 # Utility function to calculate dog's age
+
+
 def calculate_dog_age(dob):
     """
     Calculate the age of a dog based on its date of birth.
@@ -165,11 +169,13 @@ def filter_dogs():
 
         return render_template("dogs.html", dogs=dogs)
 
+
 @app.route('/dogs/<dog_id>')
 def dog_details(dog_id):
     # Retrieve dog data from your database or any data source
     dog = mongo.db.dogs.find_one({'_id': ObjectId(dog_id)})
     return render_template('dog_details.html', dog=dog)
+
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
@@ -252,6 +258,7 @@ def logout():
     flash("You have been logged out.")
     return redirect(url_for("home"))
 
+
 @app.route("/adoption_form/<dog_id>", methods=["GET", "POST"])
 def adoption_form(dog_id):
     if request.method == 'POST':
@@ -261,7 +268,8 @@ def adoption_form(dog_id):
         if user:
             user_id = user['_id']
 
-            existing_form = mongo.db.adoptionRequests.find_one({'user_id': ObjectId(user_id), 'dog_id': ObjectId(dog_id)})
+            existing_form = mongo.db.adoptionRequests.find_one(
+                {'user_id': ObjectId(user_id), 'dog_id': ObjectId(dog_id)})
 
             if existing_form:
                 flash("Error: You already have filled in this form for this dog!")
@@ -269,34 +277,47 @@ def adoption_form(dog_id):
                 adoption_info = {
                     'user_id': user_id,
                     'dog_id': ObjectId(dog_id),
+                    'firstName': request.form.get('first_name').capitalize(),
+                    'lastName': request.form.get('last_name').capitalize(),
+                    'email': request.form.get('email').lower(),
+                    'phone': request.form.get('phone'),
+                    'addressLine': request.form.get('address_line1').capitalize(),
+                    'city': request.form.get('city').capitalize(),
+                    'county': request.form.get('county').capitalize(),
+                    'postCode': request.form.get('post_code').upper(),
+                    'whyThisDog': request.form.get('interested_dog'),
                     'experience': request.form.get('experience'),
                     'reason': request.form.get('reason'),
-                    'other_dogs_option': request.form.get('other_dogs_option'),
-                    'other_dogs_details': request.form.get('other_dogs_details') if request.form.get('other_dogs_option') == 'yes' else None,
-                    'other_cats_option': request.form.get('other_cats_option'),
-                    'other_cats_details': request.form.get('other_cats_details') if request.form.get('other_cats_option') == 'yes' else None,
-                    'other_pets_option': request.form.get('other_pets_option'),
-                    'other_pets_details': request.form.get('other_pets_details') if request.form.get('other_pets_option') == 'yes' else None,
+                    'otherDogsOption': request.form.get('other_dogs_option'),
+                    'otherDogsDetails': request.form.get('other_dogs_details') if request.form.get('other_dogs_option') == 'yes' else None,
+                    'otherCatsOption': request.form.get('other_cats_option'),
+                    'otherCatsDetails': request.form.get('other_cats_details') if request.form.get('other_cats_option') == 'yes' else None,
+                    'otherPetsOption': request.form.get('other_pets_option'),
+                    'otherPetsDetails': request.form.get('other_pets_details') if request.form.get('other_pets_option') == 'yes' else None,
                     'children': request.form.get('children'),
-                    'children_details': request.form.get('children_details') if request.form.get('children') == 'yes' else None,
-                    'work_hours': request.form.get('work_hours'),
-                    'exercise_hours': request.form.get('exercise_hours')
+                    'childrenDetails': request.form.get('children_details') if request.form.get('children') == 'yes' else None,
+                    'workHours': request.form.get('work_hours'),
+                    'exerciseHours': request.form.get('exercise_hours'),
+                    'status': "Submitted"
                 }
 
                 # Insert the adoption form data into the MongoDB collection
-                adoption_request = mongo.db.adoptionRequests.insert_one(adoption_info)
+                adoption_request = mongo.db.adoptionRequests.insert_one(
+                    adoption_info)
                 flash("Thank you, we have your form")
 
     dog = mongo.db.dogs.find_one({'_id': ObjectId(dog_id)})
 
     return render_template("adoption_form.html", dog=dog)
 
+
 @app.route("/adoption_request/<request_id>", methods=["GET", "POST"])
 def adoption_request_details(request_id):
-    adoption_request = (mongo.db.adoptionRequests.find_one({'_id': ObjectId(request_id)}))
+    adoption_request = (mongo.db.adoptionRequests.find_one(
+        {'_id': ObjectId(request_id)}))
 
     return render_template("adoption_request.html", adoption_request=adoption_request)
-    
+
 
 @app.route("/add_dog", methods=['POST', 'GET'])
 def add_dog():
@@ -419,13 +440,15 @@ def profile(username):
     user_id = user['_id']
 
     # Query adoption requests for the user
-    adoption_requests = list(mongo.db.adoptionRequests.find({'user_id': ObjectId(user_id)}))
+    adoption_requests = list(mongo.db.adoptionRequests.find(
+        {'user_id': ObjectId(user_id)}))
 
     for request in adoption_requests:
         dog_info = mongo.db.dogs.find_one({'_id': request['dog_id']})
         request['dog_info'] = dog_info
 
     return render_template("profile.html", user=user, adoption_requests=adoption_requests)
+
 
 @app.route('/random_dog')
 def random_dog():
@@ -440,6 +463,7 @@ def random_dog():
     random_dog_id = str(random_dog['_id'])
 
     return redirect(url_for('dog_details', dog_id=random_dog_id))
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"), port=int(
