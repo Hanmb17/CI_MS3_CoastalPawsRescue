@@ -291,7 +291,12 @@ def adoption_form(dog_id):
 
     return render_template("adoption_form.html", dog=dog)
 
+@app.route("/adoption_request/<request_id>", methods=["GET", "POST"])
+def adoption_request_details(request_id):
+    adoption_request = (mongo.db.adoptionRequests.find_one({'_id': ObjectId(request_id)}))
 
+    return render_template("adoption_request.html", adoption_request=adoption_request)
+    
 
 @app.route("/add_dog", methods=['POST', 'GET'])
 def add_dog():

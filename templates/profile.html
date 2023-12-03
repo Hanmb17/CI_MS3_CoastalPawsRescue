@@ -57,13 +57,14 @@
                     <span class="card-title">{{ adoption_requests.dog_info.name }}</span>
                 <img class="dog-image" src="{{ adoption_requests.dog_info.imageURL }}" alt="{{ adoption_requests.dog_info.name }}'s Image">
                     <p>Status: {{ adoption_requests._id }}</p>
+                    <a href="{{ url_for('adoption_request_details', request_id=adoption_requests._id) }}" class="waves-effect btn-large cta-button">View Request</a>
                 </div>
             </div>
         </div>
         {% endfor %}
     {% else %}
         <p>No adoption requests made.</p>
-        <a href="#" class="btn">View Dogs Listing</a>
+        <a href="#" class="waves-effect btn-large cta-button">View Dogs Listing</a>
     {% endif %}
     </div>
     </section>
