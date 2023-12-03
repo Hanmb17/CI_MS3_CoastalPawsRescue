@@ -45,34 +45,55 @@
         </div>
     
         <div id="approved" class="col s12">
-            {% if approved_requests %}
-                <!-- Display Approved Adoption Requests -->
-                {% for request in approved_requests %}
-                    <div class="card">
-                        <!-- Similar card structure as above -->
+            <div class="row">
+                {% if approved_requests %}
+                    <!-- Display Approved Adoption Requests -->
+                    {% for request in approved_requests %}
+                    <div class="col s12 m6 l4">
+                        <div class="card center">
+                            <div class="card-content">
+                                <span class="card-title">{{ request.dog_name }}</span>
+                                <img class="dog-image" src="{{ request.dog_image }}" alt="{{ request.dog_name }}'s Image">
+                                <p>Status: {{ request.status }}</p>
+                                <a href="{{ url_for('adoption_request_details', request_id=request._id) }}" class="waves-effect btn-large cta-button">View Request</a>
+                            </div>
+                        </div>
                     </div>
-                {% endfor %}
-            {% else %}
+                    {% endfor %}
+                {% else %}
                 <p>No approved adoption requests.</p>
-            {% endif %}
-        </div>
+                {% endif %}
+            </div>
+            </div>
+        
     
         <div id="under-review" class="col s12">
-            {% if under_review_requests %}
-                <!-- Display Under Review Adoption Requests -->
-                {% for request in under_review_requests %}
-                    <div class="card">
-                        <!-- Similar card structure as above -->
+            <div class="row">
+                {% if under_review_requests %}
+                    <!-- Display Approved Adoption Requests -->
+                    {% for request in under_review_requests %}
+                    <div class="col s12 m6 l4">
+                        <div class="card center">
+                            <div class="card-content">
+                                <span class="card-title">{{ request.dog_name }}</span>
+                                <img class="dog-image" src="{{ request.dog_image }}" alt="{{ request.dog_name }}'s Image">
+                                <p>Status: {{ request.status }}</p>
+                                <a href="{{ url_for('adoption_request_details', request_id=request._id) }}" class="waves-effect btn-large cta-button">View Request</a>
+                            </div>
+                        </div>
                     </div>
-                {% endfor %}
-            {% else %}
+                    {% endfor %}
+                {% else %}
                 <p>No adoption requests under review.</p>
-            {% endif %}
+                {% endif %}
+            </div>
+        
+          
         </div>
     </div>
     
 </div>
-    </div>
+
 </div>
 
 {% endblock %}
