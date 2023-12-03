@@ -281,7 +281,7 @@ def adoption_form(dog_id):
                     'lastName': request.form.get('last_name').capitalize(),
                     'email': request.form.get('email').lower(),
                     'phone': request.form.get('phone'),
-                    'addressLine': request.form.get('address_line1').capitalize(),
+                    'addressLine': request.form.get('address_line1').title(),
                     'city': request.form.get('city').capitalize(),
                     'county': request.form.get('county').capitalize(),
                     'postCode': request.form.get('post_code').upper(),
@@ -289,17 +289,19 @@ def adoption_form(dog_id):
                     'experience': request.form.get('experience'),
                     'reason': request.form.get('reason'),
                     'otherDogsOption': request.form.get('other_dogs_option'),
-                    'otherDogsDetails': request.form.get('other_dogs_details') if request.form.get('other_dogs_option') == 'yes' else None,
+                    'otherDogsDetails': request.form.get('other_dogs'),
                     'otherCatsOption': request.form.get('other_cats_option'),
-                    'otherCatsDetails': request.form.get('other_cats_details') if request.form.get('other_cats_option') == 'yes' else None,
+                    'otherCatsDetails': request.form.get('other_cats'),
                     'otherPetsOption': request.form.get('other_pets_option'),
-                    'otherPetsDetails': request.form.get('other_pets_details') if request.form.get('other_pets_option') == 'yes' else None,
+                    'otherPetsDetails': request.form.get('other_pets'),
                     'children': request.form.get('children'),
-                    'childrenDetails': request.form.get('children_details') if request.form.get('children') == 'yes' else None,
-                    'workHours': request.form.get('work_hours'),
+                    'childrenDetails': request.form.get('children'),
+                    'leftAloneHours': request.form.get('alone_hours'),
                     'exerciseHours': request.form.get('exercise_hours'),
                     'status': "Submitted"
                 }
+
+                print(adoption_info)
 
                 # Insert the adoption form data into the MongoDB collection
                 adoption_request = mongo.db.adoptionRequests.insert_one(
