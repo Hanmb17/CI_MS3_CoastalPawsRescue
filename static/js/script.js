@@ -9,6 +9,9 @@ $(document).ready(function () {
         coverTrigger: false
     });
 
+    $('.tabs').tabs();
+
+
     $('.tooltipped').tooltip();
     $('.datepicker').datepicker({
         format: 'dd/mm/yyyy',

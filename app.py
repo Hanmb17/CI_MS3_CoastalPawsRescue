@@ -318,8 +318,30 @@ def adoption_form(dog_id):
 
 @app.route("/adoption_requests")
 def adoption_requests():
-    return render_template("adoption_requests.html")
+    submitted_requests = list(
+        mongo.db.adoptionRequests.find({'status': 'Submitted'}))
+    approved_requests = list(
+        mongo.db.adoptionRequests.find({'status': 'Approved'}))
+    under_review_requests = list(
+        mongo.db.adoptionRequests.find({'status': 'Under Review'}))
 
+     # Retrieve additional information for each request
+    for request in submitted_requests + approved_requests + under_review_requests:
+        # Query the dogs collection using the dog_id in the adoption request
+        dog_id = request.get('dog_id')
+        print(dog_id)
+        dog_info = mongo.db.dogs.find_one({'_id': ObjectId(dog_id)})
+        print(dog_info)
+
+        # Add additional information to the request
+        request['dog_name'] = dog_info.get('name')
+        request['dog_image'] = dog_info.get('imageURL')
+
+    return render_template("adoption_requests.html",
+                           submitted_requests=submitted_requests,
+                           approved_requests=approved_requests,
+                           under_review_requests=under_review_requests)
+    
 
 @app.route("/adoption_request/<request_id>", methods=["GET", "POST"])
 def adoption_request_details(request_id):

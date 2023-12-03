@@ -12,6 +12,17 @@
   --light-shadow: rgba(0, 0, 0, 0.14);
 }
 
+/* Background colour */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  /* Grows content to fit space if min-height is not reached */
+  main {
+    flex: 1 0 auto;
+  }
+
 /* General Styles */
 
 h1,
@@ -451,6 +462,11 @@ input[type=number]:not(.browser-default):focus:not([readonly])+label {
     border: 2px solid var(--text-color);
 }
 
+.tabs .indicator {
+    background-color: #2196F3;
+}
+
+
 /* flash messgaes */
 .flashes h4 {
     font-size: 18px;
@@ -474,6 +490,11 @@ input[type=number]:not(.browser-default):focus:not([readonly])+label {
 
 .left-padding {
     padding-left: .75rem;
+}
+
+
+#mobileTabs {
+    display: none;
 }
 
 
@@ -567,5 +588,13 @@ input[type=number]:not(.browser-default):focus:not([readonly])+label {
     
       .input-field.col label {
         left: 0;
+    }
+
+    .tabs {
+        display: none;
+    }
+
+    #mobileTabs {
+        display: block;
     }
 }
