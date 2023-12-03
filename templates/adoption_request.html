@@ -2,7 +2,10 @@
 {% block content %}
 
 <div class="container">
-    <h1>Your Adoption Application For </h1>
+    <div class="adoption-header">
+        <img class="dog-image" src="{{ dog.imageURL }}" alt="{{ dog.name }}'s Image">
+        <h1>Your Adoption Application For {{ dog.name }}</h1>
+    </div>
 
     <div class="card">
         <div class="card-content">
@@ -21,14 +24,10 @@
     
             <!-- Display other sections of the form -->
             <h5>Supporting Information</h5>
-            <p class="white-text">{{ adoption_request.experience }}</p>
-            <p>{{ adoption_request.reason }}</p>
-            <p class="white-text">{{ adoption_request.experience }}</p>
-            <p>{{ adoption_request.reason }}</p>
-            <p class="white-text">{{ adoption_request.experience }}</p>
-            <p>{{ adoption_request.reason }}</p>
-    
-    
+            <p><strong>What I can offer{{ dog.name}}:</strong> {{ adoption_request.whyThisDog }}</p>
+            <p><strong>My Experience:</strong> {{ adoption_request.experience }}</p>
+            <p><strong>Why I want to adopt</strong> {{ adoption_request.reason }}</p>
+            
             <!-- Other Pets and Family -->
             <h5>Household Information</h5>
             <p><strong>Own Other Dogs:</strong> {{ adoption_request.otherDogsOption }}</p>

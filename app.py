@@ -318,7 +318,11 @@ def adoption_request_details(request_id):
     adoption_request = (mongo.db.adoptionRequests.find_one(
         {'_id': ObjectId(request_id)}))
 
-    return render_template("adoption_request.html", adoption_request=adoption_request)
+    dog_id = adoption_request.get('dog_id')
+    dog = mongo.db.dogs.find_one({'_id': ObjectId(dog_id)})
+
+
+    return render_template("adoption_request.html", adoption_request=adoption_request, dog=dog)
 
 
 @app.route("/add_dog", methods=['POST', 'GET'])
