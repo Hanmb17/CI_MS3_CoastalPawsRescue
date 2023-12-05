@@ -219,6 +219,7 @@ def signup():
                 "email": request.form.get("email").lower(),
                 "password": generate_password_hash(request.form.get(
                     "password")),
+                "userRole": "Member"
             }
             mongo.db.users.insert_one(register)
 
@@ -325,7 +326,7 @@ def adoption_requests():
     under_review_requests = list(
         mongo.db.adoptionRequests.find({'status': 'Under Review'}))
 
-     # Retrieve additional information for each request
+    # Retrieve additional information for each request
     for request in submitted_requests + approved_requests + under_review_requests:
         # Query the dogs collection using the dog_id in the adoption request
         dog_id = request.get('dog_id')
