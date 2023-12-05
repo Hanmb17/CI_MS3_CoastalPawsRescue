@@ -242,8 +242,14 @@ def get_login_signup():
             if check_password_hash(
                     existing_user["password"], request.form.get("password")):
                 session["user"] = existing_user["username"].lower()
-                flash("Login Successful!")
-                return redirect(url_for("home"))
+
+                # Check user role and redirect accordingly
+                if existing_user.get("userRole") == "Admin":
+                    flash("Admin Login Successful!")
+                    return redirect(url_for("admin_profile"))
+                else:
+                    flash("Login Successful!")
+                    return redirect(url_for("profile", username=session["user"]))
             else:
                 flash("Incorrect password. Please try again.")
         else:
