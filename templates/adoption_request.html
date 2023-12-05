@@ -4,7 +4,13 @@
 <div class="container">
     <div class="adoption-header">
         <img class="dog-image" src="{{ dog.imageURL }}" alt="{{ dog.name }}'s Image">
-        <h1>Your Adoption Application For {{ dog.name }}</h1>
+        {% if 'Admin' in session.get('roles', []) %}
+            <!-- Display for Admin users -->
+            <h1>Adoption Request for {{ dog.name }}</h1>
+        {% else %}
+            <!-- Display for member users -->
+            <h1>Your Adoption Application For {{ dog.name }}</h1>
+        {% endif %}
     </div>
 
     <div class="card">
