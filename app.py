@@ -189,7 +189,7 @@ def signup():
                 ]
             }
         )
-        # check if username and email already exists in db
+        # check if username and email already exist in db
         if existing_user:
             if (
                 existing_user.get("username") == request.form.get(
@@ -214,12 +214,17 @@ def signup():
                     "new account."
                 )
         else:
+            password = request.form.get("password")
+            confirm_password = request.form.get("confirm_password")
+
+            if password != confirm_password:
+                flash("Passwords do not match.")
+                return render_template("signup.html")
+
             register = {
                 "username": request.form.get("username").lower(),
                 "email": request.form.get("email").lower(),
-                "password": generate_password_hash(request.form.get(
-                    "password")),
-                "userRole": "Member"
+                "password": generate_password_hash(request.form.get("password")),
             }
             mongo.db.users.insert_one(register)
 
@@ -242,14 +247,8 @@ def get_login_signup():
             if check_password_hash(
                     existing_user["password"], request.form.get("password")):
                 session["user"] = existing_user["username"].lower()
-
-                # Check user role and redirect accordingly
-                if existing_user.get("userRole") == "Admin":
-                    flash("Admin Login Successful!")
-                    return redirect(url_for("admin_profile"))
-                else:
-                    flash("Login Successful!")
-                    return redirect(url_for("profile", username=session["user"]))
+                flash("Login Successful!")
+                return redirect(url_for("home"))
             else:
                 flash("Incorrect password. Please try again.")
         else:
@@ -332,7 +331,7 @@ def adoption_requests():
     under_review_requests = list(
         mongo.db.adoptionRequests.find({'status': 'Under Review'}))
 
-    # Retrieve additional information for each request
+     # Retrieve additional information for each request
     for request in submitted_requests + approved_requests + under_review_requests:
         # Query the dogs collection using the dog_id in the adoption request
         dog_id = request.get('dog_id')

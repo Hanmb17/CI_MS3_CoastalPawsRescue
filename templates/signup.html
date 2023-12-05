@@ -53,9 +53,9 @@
                   name="password"
                   minlength="5"
                   maxlength="15"
-                  required
                   pattern="^[a-zA-Z0-9]{5,15}$" 
                   class="validate"
+                  required
                 />
                 <label  for="signup_password">Password</label>
               </div>
@@ -66,13 +66,11 @@
                   name="confirm_password"
                   minlength="5"
                   maxlength="15"
-                  required
                   pattern="^[a-zA-Z0-9]{5,15}$"
                   class="validate"
-                  oninput="checkPasswordMatch()"
+                  required
                 />
                 <label for="signup_confirm_password">Confirm Password</label>
-                <span id="password-match-msg"></span>
               </div>
             
               <button
