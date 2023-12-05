@@ -49,12 +49,19 @@
 
             <!-- Adoption Buttons -->
             {% if session.user %}
-            <p>Fill in the adoption form here.</p>
-                <a href="{{ url_for('adoption_form', dog_id=dog._id) }}" class="waves-effect btn-large cta-button">Adopt Me</a>
+            {% if 'Admin' in session.get('roles', []) %}
+                <!-- Display Edit Listing button for admin user -->
+                <a href="{{ url_for('edit_dog', dog_id=dog._id) }}" class="waves-effect btn-large cta-button">Edit Listing</a>
             {% else %}
-                <p>Join or log in to start the adoption process.</p>
-                <a href="{{ url_for('get_login_signup') }}" class="waves-effect btn-large cta-button">Log In / Sign Up</a>
+                <!-- Display Adopt Me button for regular users -->
+                <p>Fill in the adoption form here.</p>
+                <a href="{{ url_for('adoption_form', dog_id=dog._id) }}" class="waves-effect btn-large cta-button">Adopt Me</a>
             {% endif %}
+        {% else %}
+            <!-- Display Log In / Sign Up button for non-logged-in users -->
+            <p>Join or log in to start the adoption process.</p>
+            <a href="{{ url_for('get_login_signup') }}" class="waves-effect btn-large cta-button">Log In / Sign Up</a>
+        {% endif %}
         </div>
 
     </div>
