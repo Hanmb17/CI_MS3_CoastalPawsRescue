@@ -26,6 +26,10 @@
                   id="signup_username"
                   type="text"
                   name="username"
+                  minlength="5"
+                  maxlength="15"
+                  pattern="^[a-zA-Z0-9]{5,15}$" 
+                  class="validate"
                   required
                 />
                 <label  for="signup_username">Username</label>
@@ -36,6 +40,7 @@
                   id="signup_email"
                   type="email"
                   name="email"
+                  type="text"
                   required
                 />
                 <label  for="signup_email">Email</label>
@@ -46,10 +51,30 @@
                   id="signup_password"
                   type="password"
                   name="password"
+                  minlength="5"
+                  maxlength="15"
                   required
+                  pattern="^[a-zA-Z0-9]{5,15}$" 
+                  class="validate"
                 />
                 <label  for="signup_password">Password</label>
               </div>
+              <div class="input-field">
+                <input
+                  id="signup_confirm_password"
+                  type="password"
+                  name="confirm_password"
+                  minlength="5"
+                  maxlength="15"
+                  required
+                  pattern="^[a-zA-Z0-9]{5,15}$"
+                  class="validate"
+                  oninput="checkPasswordMatch()"
+                />
+                <label for="signup_confirm_password">Confirm Password</label>
+                <span id="password-match-msg"></span>
+              </div>
+            
               <button
                 class="waves-effect  btn-large cta-button"
                 type="submit"

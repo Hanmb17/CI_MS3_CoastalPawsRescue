@@ -153,6 +153,34 @@ document.addEventListener("DOMContentLoaded", function(event) {
         document.getElementById("minAge").value = values[0];
         document.getElementById("maxAge").value = values[1];
       });
+
+      // check passwords match for sign up form
+      function checkPasswordMatch() {
+        const password = document.getElementById("signup_password").value;
+        const confirmPassword = document.getElementById("signup_confirm_password").value;
+        const message = document.getElementById("password-match-msg");
+      
+        if (password === confirmPassword) {
+          message.innerHTML = "Passwords match!";
+          message.style.color = "green";
+        } else {
+          message.innerHTML = "Passwords do not match";
+          message.style.color = "red";
+        }
+      }
+      
+      function validatePassword() {
+        const password = document.getElementById("signup_password").value;
+        const confirmPassword = document.getElementById("signup_confirm_password").value;
+      
+        if (password !== confirmPassword) {
+          alert("Passwords do not match");
+          return false;
+        }
+      
+        // Other validation logic if needed
+        return true;
+      }
   });
 
   document.addEventListener('DOMContentLoaded', function() {
