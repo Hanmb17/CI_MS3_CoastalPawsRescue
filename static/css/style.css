@@ -93,6 +93,11 @@ header, footer {
   }
 
 /* Navbar */
+.logo {
+    color: var(--primary-red);
+    font-family: var(--font-cursive);
+    font-size: 32px;
+}
 nav {
   background-color: var(--white);
 }
