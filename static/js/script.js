@@ -56,8 +56,10 @@ $(document).ready(function () {
 
         if (screenWidth <= 600) {
             $('#hero-section').removeClass('left-margin-0');
+            $('#dog-details').removeClass('valign-wrapper');
         }else{
             $('#hero-section').addClass('left-margin-0');
+            $('#dog-details').addClass('valign-wrapper');
         }
 
     }

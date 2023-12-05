@@ -5,10 +5,10 @@
     <h1 class="center meet-header">Meet {{ dog.name }}</h1>
 
     <!-- Dog Details -->
-    <div class="row valign-wrapper">
+    <div class="row valign-wrapper" id="dog-details">
         <div class="col s12 m6">
             <!-- Dog Image -->
-            <img class="responsive-img" src="{{ dog.imageURL }}" alt="{{ dog.name }}'s Image">
+            <img class="dog-main-image" src="{{ dog.imageURL }}" alt="{{ dog.name }}'s Image">
         </div>
         <div class="col s12 m6">
             <!-- Basic Info -->
@@ -45,6 +45,7 @@
                
                 </tbody>
             </table>
+            <br>
 
 
             <!-- Adoption Buttons -->
