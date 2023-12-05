@@ -30,56 +30,71 @@
   </head>
   <body>
     <header>
-      <!-- Dropdown Elements-->
-      <ul id="dropdown1" class="dropdown-content blue-font">
-        <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-        <!-- Remove once fully coded -->
-        <li><a href="{{ url_for('admin_profile') }}">Admin Profile</a></li>
-        <li class=""><a href="{{ url_for('add_dog') }}">Add / Edit Dog Listings</a></li>
-        <li class=""><a href="#">Adoption Requests</a></li>
-        <li class=""><a href="#">Adoption Status</a></li>
-        <li class=""><a href="#">Favourite Dogs</a></li>
-        <li class=""><a href="#">Adoption Form</a></li>
-      </ul>
-      <!-- Main Navbar -->
-      <div class="navbar-fixed">
-      <nav class="z-depth-2 side-padding" id="nav">
-        <div class="nav-wrapper blue-font">
-          <a href="#" class="brand-logo left">Logo</a>
-          <a href="#" data-target="mobile-demo" class="sidenav-trigger right"
-            ><i class="fa-solid fa-bars"></i
-          ></a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="{{ url_for('home') }}">Home</a></li>
-            <li><a href="{{ url_for('get_dogs') }}">Dogs For Adapotion</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li class="margin-4">
-              <a class="dropdown-trigger" href="{{ url_for('get_login_signup') }}" data-target="dropdown1">
-                <i class="fa-solid fa-user"></i> Log In / Sign Up</a
-              >
-            </li>
-            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-          </ul>
-        </div>
-      </nav>
+        <!-- Dropdown Elements-->
+        <ul id="dropdown1" class="dropdown-content blue-font">
+            {% if 'Member' in session['roles'] %}
+                <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+            {% elif 'Admin' in session.get('roles', []) %}
+                <!-- Display Admin Profile link if user is an admin -->
+                <li><a href="{{ url_for('admin_profile') }}">Admin Profile</a></li>
+                <li><a href="{{ url_for('adoption_requests')}}">Adoption Requests</a></li>
+            {% endif %}
+        </ul>
+    <!-- Main Navbar -->
+    <div class="navbar-fixed">
+        <nav class="z-depth-2 side-padding" id="nav">
+            <div class="nav-wrapper blue-font">
+                <a href="#" class="brand-logo left">Logo</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger right">
+                    <i class="fa-solid fa-bars"></i>
+                </a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('get_dogs') }}">Dogs For Adoption</a></li>
+                    
+                    {% if 'user' in session %}
+                        <!-- Display username dropdown if user is logged in -->
+                        <li>
+                            <a class="dropdown-trigger" href="#" data-target="dropdown1">
+                                {{ session['user'] }} {{ session['role'] }}  ▼
+                            </a>
+                        </li>
+                        <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+                    {% else %}
+                        <!-- Display Log In button if user is not logged in -->
+                        <li class="margin-4">
+                            <a href="{{ url_for('get_login_signup') }}">
+                                <i class="fa-solid fa-user"></i> Log In / Sign Up
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
     </div>
-
-      <ul class="sidenav blue-font" id="mobile-demo">
+      
+    <!-- Mobile Side Navigation -->
+    <ul class="sidenav blue-font" id="mobile-demo">
         <li><a href="{{ url_for('home') }}">Home</a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="{{ url_for('get_dogs') }}">Dogs For Adapotion</a></li>
-        <li><a href="#">Contact Us</a></li>
-        <li class=""><a href="{{ url_for('get_login_signup') }}">Log In / Sign Up</a></li>
-        <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-        <!-- Remove once fully coded -->
-        <li><a href="{{ url_for('admin_profile') }}">Admin Profile</a></li>
-        <li class=""><a href="{{ url_for('add_dog') }}">Add / Edit Dog Listings</a></li>
-        <li class=""><a href="#">Adoption Requests</a></li>
-        <li class=""><a href="#">Adoption Status</a></li>
-        <li class=""><a href="#">Favourite Dogs</a></li>
-        <li class=""><a href="#">Adoption Form</a></li>
-      </ul>
-    </header>
+        <li><a href="{{ url_for('get_dogs') }}">Dogs For Adoption</a></li>
+    
+        <!-- Check if the user is logged in -->
+        {% if 'user' in session %}
+            {% if 'Member' in session['roles'] %}
+                <!-- Display Member Profile link if user is a member -->
+                <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+            {% elif 'Admin' in session.get('roles', []) %}
+                <!-- Display Admin Profile link and Adoption Requests if user is an admin -->
+                <li><a href="{{ url_for('admin_profile') }}">Admin Profile</a></li>
+                <li><a href="{{ url_for('adoption_requests')}}">Adoption Requests</a></li>
+            {% endif %}
+            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+        {% else %}
+            <!-- Display Log In / Sign Up link if user is not logged in -->
+            <li><a href="{{ url_for('get_login_signup') }}">Log In / Sign Up</a></li>
+        {% endif %}
+    </ul>
+      </header>
     
     <section>
         <!-- flash messages -->
@@ -110,17 +125,21 @@
           <div class="col m6 s12 social-links-container">
             <h5 class="white-text">Social Media Links</h5>
             <div class="social-icons">
-              <a class="grey-text text-lighten-3 icon-item" href="#!"
-                ><i class="fa-brands fa-linkedin"></i
+              <a class="grey-text text-lighten-3 icon-item" 
+              href="https://www.linkedin.com/in/hannah-bowles-590950197/"
+              target="_blank">
+              <i class="fa-brands fa-linkedin"></i
               ></a>
-              <a class="grey-text text-lighten-3 icon-item" href="#!"
-                ><i class="fa-brands fa-square-github"></i
+              <a class="grey-text text-lighten-3 icon-item" 
+              href="https://github.com/Hanmb17"
+              target="_blank" >
+                <i class="fa-brands fa-square-github"></i
               ></a>
             </div>
           </div>
         </div>
       </div>
-      <div class="footer-copyright">
+      <div class="footer-copyright center">
         <div class="footer-content container">
           <div>© 2023 Hannah Bowles. All rights reserved.</div>
           <p class="grey-text text-lighten-4">

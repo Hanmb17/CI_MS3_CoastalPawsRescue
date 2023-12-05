@@ -9,7 +9,7 @@
         <div class="profile-links">
             <ul>
                 <li><a href="{{ url_for('admin_profile')}}" class="active">Admin Dashboard</a></li>
-                <li><a href="#">Review Adoption Requests</a></li>
+                <li><a href="{{ url_for('adoption_requests')}}">Review Adoption Requests</a></li>
                 <li><a href="{{ url_for('add_dog')}}">Add a Dog</a></li>
                 <li><a href="#searchDogs">Search Dogs</a></li>
                 <li><a href="/logout">Logout</a></li>

@@ -225,6 +225,7 @@ def signup():
                 "username": request.form.get("username").lower(),
                 "email": request.form.get("email").lower(),
                 "password": generate_password_hash(request.form.get("password")),
+                "role": "Member"
             }
             mongo.db.users.insert_one(register)
 
@@ -247,6 +248,9 @@ def get_login_signup():
             if check_password_hash(
                     existing_user["password"], request.form.get("password")):
                 session["user"] = existing_user["username"].lower()
+
+                # Sets users role
+                session["roles"] = existing_user.get("role", [])
                 flash("Login Successful!")
                 return redirect(url_for("home"))
             else:

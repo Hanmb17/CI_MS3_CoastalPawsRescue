@@ -9,10 +9,8 @@
     <div class="profile-links">
         <ul>
             <li><a href="#dashboard" class="active">Profile</a></li>
-            <li><a href="#favorites">Favorites</a></li>
             <li><a href="#applications">Applications</a></li>
-            <li><a href="#edit-profile">Edit Profile</a></li>
-            <li><a href="/logout">Logout</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
         </ul>
     </div>
 </div>
@@ -25,11 +23,6 @@
         <h4>Welcome, {{ user.username }}</h4>
         <p>Discover your new furry friend and make a difference in their lives.</p>
             </div>
-            <div class="col m6 l4"  >
-        <!-- Space for Waggy Tail Gif -->
-        <img src="" alt="Waggy Tail Gif" class="responsive-img">
-            </div>
-        </div>
     </section>
 
     <!-- Random Dog Generator Button -->
@@ -37,12 +30,6 @@
         <a href="{{ url_for('random_dog') }}" class="waves-effect  btn-large cta-button">Surprise Me With A Pup</a>
         <!-- Display the generated dog information here -->
         <div id="random-dog-info"></div>
-    </section>
-
-    <!-- Favorites Section (Replace with your actual favorites content) -->
-    <section id="favorites" class="section">
-        <h5>Your Favorites</h5>
-        <!-- Add your favorites content here -->
     </section>
 
     <!-- Applications Section (Replace with your actual applications content) -->
@@ -67,12 +54,6 @@
         <a href="#" class="waves-effect btn-large cta-button">View Dogs Listing</a>
     {% endif %}
     </div>
-    </section>
-
-    <!-- Edit Profile Section (Replace with your actual edit profile content) -->
-    <section id="edit-profile" class="section">
-        <h5>Edit Your Profile</h5>
-        <!-- Add your edit profile content here -->
     </section>
 
 
