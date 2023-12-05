@@ -297,6 +297,6 @@ Details of any projects or online sources that I have learned from or adapted in
 
 ---
 
-[Go to Top]()
+[Go to Top](#coastal-paws-rescue---dog-adoption-website)
 
----
+--
