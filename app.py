@@ -224,7 +224,8 @@ def signup():
             register = {
                 "username": request.form.get("username").lower(),
                 "email": request.form.get("email").lower(),
-                "password": generate_password_hash(request.form.get("password")),
+                "password": generate_password_hash(
+                    request.form.get("password")),
                 "role": "Member"
             }
             mongo.db.users.insert_one(register)
@@ -335,8 +336,9 @@ def adoption_requests():
     under_review_requests = list(
         mongo.db.adoptionRequests.find({'status': 'Under Review'}))
 
-     # Retrieve additional information for each request
-    for request in submitted_requests + approved_requests + under_review_requests:
+    # Retrieve additional information for each request
+    for request in (
+         submitted_requests + approved_requests + under_review_requests):
         # Query the dogs collection using the dog_id in the adoption request
         dog_id = request.get('dog_id')
         print(dog_id)
@@ -351,7 +353,7 @@ def adoption_requests():
                            submitted_requests=submitted_requests,
                            approved_requests=approved_requests,
                            under_review_requests=under_review_requests)
-    
+
 
 @app.route("/adoption_request/<request_id>", methods=["GET", "POST"])
 def adoption_request_details(request_id):
@@ -524,4 +526,4 @@ def random_dog():
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"), port=int(
-        os.environ.get("PORT")), debug=True)
+       os.environ.get("PORT")), debug=False)
