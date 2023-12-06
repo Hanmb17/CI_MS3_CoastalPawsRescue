@@ -25,10 +25,6 @@
                     <h1>Welcome, {{ username }}</h1>
                     <p>This is your admin Dashboard</p>
                 </div>
-                <div class="col m6 l4">
-                    <!-- Space for Waggy Tail Gif -->
-                    <img src="" alt="Waggy Tail Gif" class="responsive-img">
-                </div>
             </div>
         </section>
 
@@ -40,10 +36,7 @@
                         <div class="card-content">
                             <span class="card-title center">New Apotion Request(s)</span>
                             <div class="row">
-                                <div class="col s6">
-                                    <img src="" alt="Apotion icon" class="responsive-img">
-                                </div>
-                                <div class="col s6">
+                                <div class="col s12">
                                     {% if new_requests == 0 %}
                                     <p>There are no new adoption requests at the moment.</p>
                                     {% else %}
@@ -63,10 +56,7 @@
                         <div class="card-content">
                             <span class="card-title center">Add a Dog</span>
                             <div class="row">
-                                <div class="col s6">
-                                    <img src="" alt="Apotion icon" class="responsive-img">
-                                </div>
-                                <div class="col s6">
+                                <div class="col s12">
                                     <p>Add a new dog listings</p>
                                 </div>
                             </div>
@@ -115,9 +105,9 @@
                                 </div>
                                 <div class="card-action">
                                     <!-- "View" button linking to a detailed view -->
-                                    <a href="" class="waves-effect waves-light btn-small">View</a>
+                                    <a href="" class="waves-effect btn-large cta-button">View</a>
                                     <!-- "Edit" button linking to an edit page -->
-                                    <a href="{{ url_for('edit_dog', dog_id=dog._id) }}" class="waves-effect waves-light btn-small">Edit</a>
+                                    <a href="{{ url_for('edit_dog', dog_id=dog._id) }}" class="waves-effect btn-large cta-button">Edit</a>
                                 </div>
                             </div>
                         </div>
